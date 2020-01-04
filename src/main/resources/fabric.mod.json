@@ -1,0 +1,30 @@
+{
+    "schemaVersion": 1,
+    "id": "beenfo",
+    "version": "1.15-fabric0.4.23-1.0",
+    "environment": "client",
+    "entrypoints": {
+        "client": [ "de.guntram.mcmod.beenfo.Beenfo" ]
+    },
+    "custom": {
+        "modmenu:clientsideOnly": true
+    },
+    "mixins": [
+      	"mixins.beenfo.json"
+    ],
+    "depends": {
+      "fabric": "*"
+    },
+    "recommends": {
+      "modmenu" : "*"
+    },
+    "name": "Beenfo",
+    "description": "Adds a tooltip to bee nests and hives that shows how much honey, and how many bees, are contained.\n\n.If you like bees, and like this mod, please consider getting more information about them at https://beyondpesticides.org/programs/bee-protective-pollinators-and-pesticides/bee-protective.",
+    "icon": "pack.png",
+    "authors": [ "Giselbaer" ],
+    "contact": {
+        "homepage": "https://minecraft.curseforge.com/projects/beenfo",
+        "sources": "https://github.com/gbl/Beenfo",
+        "issues": "https://github.com/gbl/Beenfo/issues"
+    }
+}
