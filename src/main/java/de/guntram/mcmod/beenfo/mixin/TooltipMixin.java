@@ -7,8 +7,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -35,9 +35,12 @@ public abstract class TooltipMixin {
                 CompoundTag tag = this.getTag();
                 if (tag != null) {
                     String honeyLevel = tag.getCompound("BlockStateTag").getString("honey_level");  // wtf this is a string ???
+                    if (honeyLevel == null || honeyLevel.isEmpty()) {
+                        honeyLevel = "0";
+                    }
                     int beeCount   = tag.getCompound("BlockEntityTag").getList("Bees", 10).size();
-                    list.add(new LiteralText(honeyLevel+" honey"));
-                    list.add(new LiteralText(beeCount+   " bees"));
+                    list.add(new TranslatableText("tooltip.honey", honeyLevel));
+                    list.add(new TranslatableText("tooltip.bees", beeCount));
                 }
             }
         } catch (NullPointerException ex) {

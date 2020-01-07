@@ -1,7 +1,7 @@
 {
     "schemaVersion": 1,
     "id": "beenfo",
-    "version": "1.15-fabric0.4.23-1.0",
+    "version": "1.15-fabric0.4.23-1.0.1",
     "environment": "client",
     "entrypoints": {
         "client": [ "de.guntram.mcmod.beenfo.Beenfo" ]
