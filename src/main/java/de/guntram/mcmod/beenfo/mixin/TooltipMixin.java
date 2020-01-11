@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import org.spongepowered.asm.mixin.Mixin;
@@ -38,9 +39,24 @@ public abstract class TooltipMixin {
                     if (honeyLevel == null || honeyLevel.isEmpty()) {
                         honeyLevel = "0";
                     }
-                    int beeCount   = tag.getCompound("BlockEntityTag").getList("Bees", 10).size();
-                    list.add(new TranslatableText("tooltip.honey", honeyLevel));
-                    list.add(new TranslatableText("tooltip.bees", beeCount));
+
+                    ListTag bees = tag.getCompound("BlockEntityTag").getList("Bees", 10);
+                    int beeCount = bees.size();
+
+                    // Insert our lines in reverse order and always at the beginning of the list,
+                    // this way they will appear before the advanced tooltips if enabled.
+                    for (int i = 0; i < beeCount; i++)
+                    {
+                        tag = bees.getCompound(i).getCompound("EntityData");
+                        if (tag != null && tag.contains("CustomName", 8))
+                        {
+                            String beeName = tag.getString("CustomName");
+                            list.add(Math.min(1, list.size()), new TranslatableText("tooltip.name", Text.Serializer.fromJson(beeName).getString()));
+                        }
+                    }
+
+                    list.add(Math.min(1, list.size()), new TranslatableText("tooltip.bees", beeCount));
+                    list.add(Math.min(1, list.size()), new TranslatableText("tooltip.honey", honeyLevel));
                 }
             }
         } catch (NullPointerException ex) {
