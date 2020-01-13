@@ -26,7 +26,7 @@ public abstract class TooltipMixin {
     
 //    @Inject(method="getTooltip(Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/client/util/ITooltipFlag;)Ljava/util/List",
     @Inject(method="getTooltip",            
-            at=@At("RETURN"), locals=LocalCapture.CAPTURE_FAILHARD, cancellable=true)
+            at=@At("RETURN"), locals=LocalCapture.CAPTURE_FAILHARD)
     private void getTooltipdone(PlayerEntity playerIn, TooltipContext advanced, 
             CallbackInfoReturnable<List> ci,
             List<Text> list) {
@@ -60,18 +60,17 @@ public abstract class TooltipMixin {
                 }
             }
         } catch (NullPointerException ex) {
-                System.out.println("NPE in getTooltipdone");
-                try {
-                    Item item = this.getItem();
-                    if (item == null) {
-                        System.out.println("item is null");
-                    } else {
-                        System.out.println("item is "+this.getItem().getTranslationKey());
-                    }
-                } catch (NullPointerException ex2) {
-                    
+            System.out.println("NPE in getTooltipdone");
+            try {
+                Item item = this.getItem();
+                if (item == null) {
+                    System.out.println("item is null");
+                } else {
+                    System.out.println("item is "+this.getItem().getTranslationKey());
                 }
+            } catch (NullPointerException ex2) {
+
+            }
         }
-        ci.setReturnValue(list);
     }
 }
