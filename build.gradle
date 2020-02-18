@@ -15,6 +15,7 @@ archivesBaseName = "beenfo"
 version = "1.15-fabric0.4.23-1.0.3"
 
 minecraft {
+    refmapName = "Beenfo-refmap.json";
 }
 
 dependencies {
