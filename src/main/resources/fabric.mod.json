@@ -1,7 +1,7 @@
 {
     "schemaVersion": 1,
     "id": "beenfo",
-    "version": "1.15-fabric0.4.23-1.0.3",
+    "version": "${version}",
     "environment": "client",
     "entrypoints": {
         "client": [ "de.guntram.mcmod.beenfo.Beenfo" ]
@@ -23,7 +23,7 @@
     "icon": "pack.png",
     "authors": [ "Giselbaer" ],
     "contact": {
-        "homepage": "https://minecraft.curseforge.com/projects/beenfo",
+        "homepage": "https://www.curseforge.com/minecraft/mc-mods/beenfo",
         "sources": "https://github.com/gbl/Beenfo",
         "issues": "https://github.com/gbl/Beenfo/issues"
     }

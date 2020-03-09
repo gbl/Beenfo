@@ -32,7 +32,7 @@ public abstract class TooltipMixin {
             List<Text> list) {
 
         try {
-            if (!this.isEmpty() && (this.getItem() == Items.BEE_HIVE || this.getItem() == Items.BEE_NEST)) {
+            if (!this.isEmpty() && (this.getItem() == Items.BEEHIVE || this.getItem() == Items.BEE_NEST)) {
                 CompoundTag tag = this.getTag();
                 if (tag != null) {
                     String honeyLevel = tag.getCompound("BlockStateTag").getString("honey_level");  // wtf this is a string ???
