@@ -2,14 +2,15 @@ package de.guntram.mcmod.beenfo.mixin;
 
 import java.util.List;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.resource.language.I18n;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -51,12 +52,14 @@ public abstract class TooltipMixin {
                         if (tag != null && tag.contains("CustomName", 8))
                         {
                             String beeName = tag.getString("CustomName");
-                            list.add(Math.min(1, list.size()), new TranslatableText("tooltip.name", Text.Serializer.fromJson(beeName).getString()));
+                            list.add(Math.min(1, list.size()), new LiteralText(I18n.translate("tooltip.name", Text.Serializer.fromJson(beeName).getString())));
                         }
                     }
 
-                    list.add(Math.min(1, list.size()), new TranslatableText("tooltip.bees", beeCount));
-                    list.add(Math.min(1, list.size()), new TranslatableText("tooltip.honey", honeyLevel));
+                    // TranslatableText instead of LiteralText(I18n...... has the
+                    // problem of not honoring style modifiers.
+                    list.add(Math.min(1, list.size()), new LiteralText(I18n.translate("tooltip.bees", beeCount)));
+                    list.add(Math.min(1, list.size()), new LiteralText(I18n.translate("tooltip.honey", honeyLevel)));
                 }
             }
         } catch (NullPointerException ex) {
