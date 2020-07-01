@@ -1,12 +1,13 @@
 package de.guntram.mcmod.beenfo.mixin;
 
 import java.util.List;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -45,12 +46,12 @@ public class TooltipMixin {
                     if (tag != null && tag.contains("CustomName", 8))
                     {
                         String beeName = tag.getString("CustomName");
-                        list.add(Math.min(1, list.size()), new TranslationTextComponent("tooltip.name", ITextComponent.Serializer.fromJson(beeName).getString()));
+                        list.add(Math.min(1, list.size()), new StringTextComponent(I18n.format("tooltip.name", ITextComponent.Serializer.func_240643_a_(beeName).getString())));
                     }
                 }
 
-                list.add(Math.min(1, list.size()), new TranslationTextComponent("tooltip.bees", beeCount));
-                list.add(Math.min(1, list.size()), new TranslationTextComponent("tooltip.honey", honeyLevel));
+                list.add(Math.min(1, list.size()), new StringTextComponent(I18n.format("tooltip.bees", beeCount)));
+                list.add(Math.min(1, list.size()), new StringTextComponent(I18n.format("tooltip.honey", honeyLevel)));
             }
         } catch (NullPointerException ex) {
             System.out.println("NPE in getTooltipdone");
