@@ -6,16 +6,20 @@ repositories {
 	maven {
 		url = "https://maven.fabricmc.net/"
 	}
+
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 ext.Versions = new Properties()
-Versions.load(file("Versionfiles/mcversion-1.16.properties").newReader())
+Versions.load(file("Versionfiles/mcversion-1.16.1.properties").newReader())
 
 archivesBaseName = "beenfo"
-ext.projectVersion = "1.0.4"
+ext.projectVersion = "1.1"
 
 version = "${Versions['minecraft_version']}-fabric${Versions['fabric_versiononly']}-${project.projectVersion}"
 
@@ -36,6 +40,9 @@ processResources {
 }
 
 dependencies {
+    
+    compile 'org.bukkit:bukkit:1.15.2-R0.1-SNAPSHOT'
+
     minecraft  "com.mojang:minecraft:${Versions['minecraft_version']}"
     mappings   "net.fabricmc:yarn:${Versions['yarn_mappings']}:v2"
     modCompile "net.fabricmc:fabric-loader:${Versions['loader_version']}"

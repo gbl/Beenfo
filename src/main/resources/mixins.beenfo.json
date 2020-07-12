@@ -3,6 +3,9 @@
     "package": "de.guntram.mcmod.beenfo.mixin",
     "refmap": "Beenfo-refmap.json",
     "minVersion": "0.6",
+    "mixins": [
+        "BeehiveBlockUseMixin"
+    ],
     "client": [
         "TooltipMixin"
     ],
