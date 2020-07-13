@@ -2,7 +2,7 @@
     "schemaVersion": 1,
     "id": "beenfo",
     "version": "${version}",
-    "environment": "client",
+    "environment": "*",
     "entrypoints": {
         "client": [ "de.guntram.mcmod.beenfo.Beenfo" ]
     },

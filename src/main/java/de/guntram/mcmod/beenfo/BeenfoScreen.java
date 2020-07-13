@@ -45,6 +45,11 @@ public class BeenfoScreen extends Screen {
     @Override
     public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
 
+        if (this.client == null) {
+            // Not sure why this happens, but it does, spuriously, directly after
+            // opening the screen
+            return;
+        }
         renderBackground(stack, 0);
         this.client.getTextureManager().bindTexture(TEXTURE);
         this.drawTexture(stack, x, y, 0, 0, 176, 30);
