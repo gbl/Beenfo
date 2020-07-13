@@ -48,12 +48,21 @@ public class BeenfoScreen extends Screen {
         renderBackground(stack, 0);
         this.client.getTextureManager().bindTexture(TEXTURE);
         this.drawTexture(stack, x, y, 0, 0, 176, 30);
-        int minRows = Math.min(3, beeNames.size());
+        int minRows = Math.max(3, beeNames.size());
         for (int i=0; i<minRows; i++) {
             drawTexture(stack, x, y+30+i*30, 0, 30, 176, 30);
-            drawTexture(stack, x+9, y+33+(i)*(30), 0, 166, 22, 22);
+            if (i < beeNames.size()) {
+                drawTexture(stack, x+9, y+33+(i)*(30), 0, 166, 22, 22);
+            }
         }
-        this.drawTexture(stack, x, y+32+minRows*30, 0, 158, 176, 8);
+        this.drawTexture(stack, x, y+30+minRows*30, 0, 157, 176, 8);
+        
+        for (int i=Math.max(5, honeyLevel); i<9; i++) {
+            this.drawTexture(stack, x+7+i*18, y+7, 8, 64, 18, 18);
+        }
+
+        // Do everything that needs our texture above this because drawing a text will bind a different one
+
         for (int i=0; i<beeNames.size(); i++) {
             if (beeNames.get(i) != null) {
                 textRenderer.draw(stack, beeNames.get(i), x+48, y+32+(i)*(30)+8, 0x000000);

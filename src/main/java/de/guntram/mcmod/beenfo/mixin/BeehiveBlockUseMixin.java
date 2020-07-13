@@ -36,7 +36,10 @@ public class BeehiveBlockUseMixin {
             PlayerEntity playerEntity, Hand hand, BlockHitResult blockHitResult,
             CallbackInfoReturnable ci) {
     
-        if (!world.isClient() && playerEntity.getStackInHand(hand).getItem() == Items.AIR) {
+        // Yes, this is Hand.MAIN_HAND, not the `hand` parameter. A non-tool
+        // in the main hand means we'll be called with hand=OFF_HAND, but we
+        // want the main hand to be empty to do our thing.
+        if (!world.isClient() && playerEntity.getStackInHand(Hand.MAIN_HAND).getItem() == Items.AIR) {
             int honey = blockState.get(HONEY_LEVEL);
             int bees = 0;
             ListTag tag = null;
@@ -46,7 +49,7 @@ public class BeehiveBlockUseMixin {
                 tag = bbe.getBees();
                 bees = tag.size();
             }
-            System.out.println(honey + " honey, "+bees+" bees");
+            System.out.println(honey + " honey, "+bees+" bees"+", item="+playerEntity.getStackInHand(hand).getItem());
             BeenfoServer.sendBeehiveInfo(playerEntity, honey, tag);
         }
     }
