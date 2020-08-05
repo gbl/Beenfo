@@ -30,9 +30,13 @@ public class TooltipMixin {
                 if (beTag == null || !beTag.contains("Bees"))
                     return;
                 
-                String honeyLevel = bsTag.getString("honey_level");  // wtf this is a string ???
-                if (honeyLevel == null || honeyLevel.isEmpty()) {
-                    honeyLevel = "0";
+                int honeyLevel = bsTag.getInt("honey_level");
+                String honeyLevelStr = bsTag.getString("honey_level");  // wtf this is a string ???
+                if (honeyLevelStr != null || !honeyLevelStr.isEmpty()) {
+                    try {
+                        honeyLevel = Integer.parseInt(honeyLevelStr);
+                    } catch (NumberFormatException ex) {
+                    }
                 }
 
                 ListNBT bees = beTag.getList("Bees", 10);
