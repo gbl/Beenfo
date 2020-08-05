@@ -32,7 +32,7 @@ public class TooltipMixin {
                 
                 int honeyLevel = bsTag.getInt("honey_level");
                 String honeyLevelStr = bsTag.getString("honey_level");  // wtf this is a string ???
-                if (honeyLevelStr != null || !honeyLevelStr.isEmpty()) {
+                if (honeyLevelStr != null && !honeyLevelStr.isEmpty()) {
                     try {
                         honeyLevel = Integer.parseInt(honeyLevelStr);
                     } catch (NumberFormatException ex) {
