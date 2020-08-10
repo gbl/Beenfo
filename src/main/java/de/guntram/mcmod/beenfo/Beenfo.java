@@ -43,8 +43,7 @@ public class Beenfo
         if (FMLEnvironment.dist.isClient()) {
             MinecraftForge.EVENT_BUS.register(new TooltipMixin());
             channel.addListener(new BeenfoClient());
-        } else {
-            MinecraftForge.EVENT_BUS.register(new BeehiveBlockUseMixin());
         }
+        MinecraftForge.EVENT_BUS.register(new BeehiveBlockUseMixin());
     }
 }
