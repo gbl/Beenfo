@@ -70,7 +70,7 @@ public class BeenfoScreen extends Screen {
 
         for (int i=0; i<beeNames.size(); i++) {
             if (beeNames.get(i) != null) {
-                textRenderer.draw(stack, beeNames.get(i).method_30937(), x+48, y+32+(i)*(30)+8, 0x000000);
+                textRenderer.draw(stack, beeNames.get(i).asOrderedText(), x+48, y+32+(i)*(30)+8, 0x000000);
             }
         }
         setZOffset(200);
