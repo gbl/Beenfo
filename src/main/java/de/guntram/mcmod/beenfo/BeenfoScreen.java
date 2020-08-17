@@ -71,7 +71,7 @@ public class BeenfoScreen extends Screen {
 
         for (int i=0; i<beeNames.size(); i++) {
             if (beeNames.get(i) != null) {
-                field_230712_o_.func_238422_b_(stack, beeNames.get(i), x+48, y+32+(i)*(30)+8, 0x000000);      //fontRenderer.draw
+                field_230712_o_.func_238422_b_(stack, beeNames.get(i).func_241878_f(), x+48, y+32+(i)*(30)+8, 0x000000);      //fontRenderer.draw
             }
         }
         func_230926_e_(200);                                                // setZLevel?
