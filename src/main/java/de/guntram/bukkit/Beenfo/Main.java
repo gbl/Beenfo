@@ -1,15 +1,15 @@
 package de.guntram.bukkit.Beenfo;
 
-import net.minecraft.server.v1_16_R1.BlockPosition;
-import net.minecraft.server.v1_16_R1.NBTTagCompound;
-import net.minecraft.server.v1_16_R1.NBTTagList;
-import net.minecraft.server.v1_16_R1.TileEntity;
-import net.minecraft.server.v1_16_R1.TileEntityBeehive;
+import net.minecraft.server.v1_16_R2.BlockPosition;
+import net.minecraft.server.v1_16_R2.NBTTagCompound;
+import net.minecraft.server.v1_16_R2.NBTTagList;
+import net.minecraft.server.v1_16_R2.TileEntity;
+import net.minecraft.server.v1_16_R2.TileEntityBeehive;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.data.type.Beehive;
-import org.bukkit.craftbukkit.v1_16_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_16_R2.CraftWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
