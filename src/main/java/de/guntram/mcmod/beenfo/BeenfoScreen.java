@@ -9,6 +9,7 @@ import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
+import org.lwjgl.glfw.GLFW;
 
 public class BeenfoScreen extends Screen {
 
@@ -80,6 +81,17 @@ public class BeenfoScreen extends Screen {
         }
         setZOffset(0);
         itemRenderer.zOffset = 0.0F;
+    }
+    
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        if (super.keyPressed(keyCode, scanCode, modifiers)) {
+           return true;
+        } else if (keyCode == GLFW.GLFW_KEY_ESCAPE || this.client.options.keyInventory.matchesKey(keyCode, scanCode)) {
+              this.client.player.closeScreen();
+              return true;
+        }
+        return false;
     }
     
     @Override
