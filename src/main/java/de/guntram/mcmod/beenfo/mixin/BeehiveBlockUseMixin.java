@@ -12,6 +12,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.tileentity.BeehiveTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -19,6 +20,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 /**
@@ -37,14 +39,12 @@ public class BeehiveBlockUseMixin {
         Hand hand = event.getHand();
         BlockState blockState = world.getBlockState(blockPos);
         
-        // As we're injecting into the point where super.onUse() gets called,
-        // shears and bottles do not reach this point.
         if (!world.isRemote()) {
             
-            Item item = playerEntity.getHeldItem(hand).getItem();
+            Item item = event.getItemStack().getItem();
             Block block = Block.getBlockFromItem(item);
             // Any item that isn't a block will return Blocks.AIR here
-            if (block == Blocks.AIR) {
+            if (block == Blocks.AIR && item != Items.SHEARS && item != Items.GLASS_BOTTLE) {
                 ListNBT tag = null;
                 TileEntity entity = world.getTileEntity(blockPos);
                 if (entity instanceof BeehiveTileEntity) {
@@ -59,6 +59,7 @@ public class BeehiveBlockUseMixin {
                 }
                 // System.out.println(honey + " honey, "+tag.size()+" bees"+", item="+playerEntity.getHeldItem(hand).getItem());
                 BeenfoServer.sendBeehiveInfo(playerEntity, honey, tag);
+                event.setResult(Event.Result.ALLOW);
             }
         }
     }

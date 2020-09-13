@@ -28,20 +28,10 @@ public class BeenfoClient implements Consumer<NetworkEvent>
         
         honeyLevel = buffer.readInt();
         beeCount = buffer.readInt();
-//        String playerMessage = I18n.translate("tooltip.bees", new Object[] { beeCount})
-//                +", "+I18n.translate("tooltip.honey", new Object[] { honeyLevel});
-//        player.sendMessage(new LiteralText(playerMessage), false);
+
         for (int i=0; i<beeCount; i++) {
             String beeName=buffer.readString();
             beeNames.add(beeName);
-/*
-            if (!(beeName.isEmpty())) {
-                player.sendMessage(new LiteralText(I18n.translate("tooltip.name",
-                        Text.Serializer.fromJson(beeName).getString())), false);
-            } else {
-                player.sendMessage(new LiteralText(I18n.translate("tooltip.unnamed")), false);
-            }
-*/
         }
         Minecraft.getInstance().displayGuiScreen(new BeenfoScreen(null, honeyLevel, beeNames));
     }
