@@ -10,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import org.lwjgl.glfw.GLFW;
 
 public class BeenfoScreen extends Screen {
 
@@ -81,6 +82,17 @@ public class BeenfoScreen extends Screen {
         }
         func_230926_e_(0);
         field_230707_j_.zLevel = 0.0F;
+    }
+    
+    @Override
+    public boolean func_231046_a_(int keyCode, int scanCode, int modifiers) { // keyPressed
+        if (super.func_231046_a_(keyCode, scanCode, modifiers)) {
+           return true;
+        } else if (keyCode == GLFW.GLFW_KEY_ESCAPE || this.field_230706_i_.gameSettings.keyBindInventory.matchesKey(keyCode, scanCode)) {
+              this.field_230706_i_.player.closeScreen();                    // client
+              return true;
+        }
+        return false;
     }
     
     @Override

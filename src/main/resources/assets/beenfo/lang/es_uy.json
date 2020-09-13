@@ -1,6 +1,6 @@
 {
-    "tooltip.bees": "§6%d Bees",
-    "tooltip.unnamed": "§7- nameless bee",
-    "tooltip.honey": "§6%s Honey",
+    "tooltip.bees": "§6%d Abejas",
+    "tooltip.unnamed": "§7- abeja sin nombre",
+    "tooltip.honey": "§6%s Miel",
     "tooltip.name": "§e- %s"
 }
