@@ -1,18 +1,36 @@
+buildscript {
+    dependencies {
+        classpath 'de.guntram.mcmod:crowdin-translate:1.2'
+    }
+    repositories {
+        maven {
+            name = 'CrowdinTranslate source'
+            url = "https://minecraft.guntram.de/maven/"
+        }
+    }
+}
+
 plugins {
 	id 'fabric-loom' version '0.4-SNAPSHOT'
 }
+
+apply plugin: 'de.guntram.mcmod.crowdin-translate'
+crowdintranslate.crowdinProjectName = 'beenfo'
 
 repositories {
 	maven {
 		url = "https://maven.fabricmc.net/"
 	}
+    maven {
+        url = "https://minecraft.guntram.de/maven/"
+    }
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 ext.Versions = new Properties()
-Versions.load(file("Versionfiles/mcversion-1.16.3.properties").newReader())
+Versions.load(file("Versionfiles/mcversion-1.16.4.properties").newReader())
 
 archivesBaseName = "beenfo"
 ext.projectVersion = "1.2"
@@ -48,6 +66,8 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${Versions['loader_version']}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${Versions['fabric_version']}"
     modImplementation "io.github.prospector:modmenu:${Versions['modmenu_version']}"
+    modImplementation "de.guntram.mcmod:crowdin-translate:1.2"
+    include "de.guntram.mcmod:crowdin-translate:1.2"
 }
 
 // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
@@ -60,4 +80,8 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 
 jar {
 	from "LICENSE"
+}
+
+build {
+        dependsOn downloadTranslations
 }

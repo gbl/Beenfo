@@ -1,5 +1,6 @@
 package de.guntram.mcmod.beenfo;
 
+import de.guntram.mcmod.crowdintranslate.CrowdinTranslate;
 import java.util.ArrayList;
 import java.util.List;
 import net.fabricmc.api.ClientModInitializer;
@@ -22,6 +23,7 @@ public class Beenfo implements ClientModInitializer
     @Override
     public void onInitializeClient() {
         ClientSidePacketRegistry.INSTANCE.register(Beenfo.S2CPacketIdentifier, this::gotHiveInfo);
+        CrowdinTranslate.downloadTranslations(MODID);
     }
 
     private void gotHiveInfo(PacketContext context, PacketByteBuf buffer) {
