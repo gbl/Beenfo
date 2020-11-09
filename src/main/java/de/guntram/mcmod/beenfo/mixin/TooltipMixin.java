@@ -50,7 +50,7 @@ public class TooltipMixin {
                     if (tag != null && tag.contains("CustomName", 8))
                     {
                         String beeName = tag.getString("CustomName");
-                        list.add(Math.min(1, list.size()), new StringTextComponent(I18n.format("tooltip.name", ITextComponent.Serializer.func_240643_a_(beeName).getString())));
+                        list.add(Math.min(1, list.size()), new StringTextComponent(I18n.format("tooltip.name", ITextComponent.Serializer.getComponentFromJson(beeName).getString())));
                     }
                 }
 

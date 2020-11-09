@@ -54,7 +54,7 @@ public class BeehiveBlockUseMixin {
                     return;
                 }
                 int honey = 0;
-                if (blockState.func_235901_b_(HONEY_LEVEL)) {       // hasProperty
+                if (blockState.hasProperty(HONEY_LEVEL)) {       // hasProperty
                     honey = blockState.get(HONEY_LEVEL);
                 }
                 // System.out.println(honey + " honey, "+tag.size()+" bees"+", item="+playerEntity.getHeldItem(hand).getItem());
