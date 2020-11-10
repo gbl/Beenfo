@@ -59,7 +59,7 @@ dependencies {
     // aren't in spigots maven, so if you want to compile the mod, you need
     // to get a spigot.jar first. Sorry.
 
-    compileOnly files('/home/gbl/SoftwareProjects/MyProjects/MinecraftPlugins/libraries/spigot-1.16.3.jar')
+    compileOnly files('/home/gbl/SoftwareProjects/MyProjects/MinecraftPlugins/libraries/spigot-1.16.4.jar')
 
     minecraft  "com.mojang:minecraft:${Versions['minecraft_version']}"
     mappings   "net.fabricmc:yarn:${Versions['yarn_mappings']}:v2"
