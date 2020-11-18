@@ -2,5 +2,11 @@
     "tooltip.bees": "§6%d abeilles",
     "tooltip.unnamed": "§7- abeille sans nom",
     "tooltip.honey": "§6%s Miel",
-    "tooltip.name": "§e- %s"
+    "tooltip.name": "§e- %s",
+    "beenfo.config.showpopup": "Show crosshair popup",
+    "beenfo.config.popupxpercent": "Popup position left to right",
+    "beenfo.config.popupypercent": "Popup position top to down",
+    "beenfo.config.tt.showpopup": "Show a popup when you're looking at a hive or nest",
+    "beenfo.config.tt.popupxpercent": "Select the popup position on the screen",
+    "beenfo.config.tt.popupypercent": "Select the popup position on the screen"
 }

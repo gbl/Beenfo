@@ -4,7 +4,9 @@
     "version": "${version}",
     "environment": "*",
     "entrypoints": {
-        "client": [ "de.guntram.mcmod.beenfo.Beenfo" ]
+        "client": [ "de.guntram.mcmod.beenfo.Beenfo" ],
+        "main": [ "de.guntram.mcmod.beenfo.BeenfoServer" ],
+        "modmenu": [ "de.guntram.mcmod.beenfo.config.MMConfigurationHandler" ]
     },
     "custom": {
         "modmenu:clientsideOnly": true,

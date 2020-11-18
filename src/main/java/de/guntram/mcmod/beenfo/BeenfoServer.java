@@ -6,23 +6,27 @@
 package de.guntram.mcmod.beenfo;
 
 import io.netty.buffer.Unpooled;
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.network.PacketContext;
 import net.fabricmc.fabric.api.network.ServerSidePacketRegistry;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BeehiveBlockEntity;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
+import static net.minecraft.state.property.Properties.HONEY_LEVEL;
+import net.minecraft.util.math.BlockPos;
 
 /**
  *
  * @author gbl
  */
-public class BeenfoServer {
+public class BeenfoServer implements ModInitializer {
 
     // duplicate this here because we don't want to pull in Beenfo.class as 
     // that needs Screen which isn't present on dedi servers
-
-    public static final Identifier S2CPacketIdentifier = new Identifier("beenfo", "s2c");
 
     public static void sendBeehiveInfo(PlayerEntity player, int honeyLevel, ListTag bees) {
         PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
@@ -41,6 +45,42 @@ public class BeenfoServer {
                 }
             }
         }
-        ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, S2CPacketIdentifier, buf);
+        ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, Beenfo.S2CPacketIdentifierOpen, buf);
+    }
+
+    @Override
+    public void onInitialize() {
+        ServerSidePacketRegistry.INSTANCE.register(Beenfo.C2SPacketIdentifier,
+                (packetContext, attachedData) -> {
+                    processClientPacket(packetContext, attachedData);
+                });
+    }
+    
+    private void processClientPacket(PacketContext packetContext, PacketByteBuf attachedData) {
+        int packetVersion = attachedData.readInt();
+        BlockPos pos = attachedData.readBlockPos();
+        packetContext.getTaskQueue().execute(() -> sendHudContent(packetContext.getPlayer(), pos));
+    }
+
+    private void sendHudContent(PlayerEntity player, BlockPos pos) {
+        BlockState state = player.world.getBlockState(pos);
+        int honey = state.get(HONEY_LEVEL);
+        BlockEntity entity = player.world.getBlockEntity(pos);
+        PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
+        buf.writeInt(0);        // packet version number
+        buf.writeInt(honey);
+        if (entity instanceof BeehiveBlockEntity) {
+            BeehiveBlockEntity bbe = (BeehiveBlockEntity) entity;
+            ListTag tag = bbe.getBees();
+            if (tag == null) {
+                buf.writeInt(0);
+            } else {
+                buf.writeInt(tag.size());
+            }
+        } else {
+            buf.writeInt(0);
+        }
+        buf.writeBlockPos(pos);
+        ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, Beenfo.S2CPacketIdentifierHud, buf);
     }
 }
