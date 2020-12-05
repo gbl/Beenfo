@@ -7,7 +7,7 @@
         "BeehiveBlockUseMixin"
     ],
     "client": [
-        "TooltipMixin"
+        "TooltipMixin", "HiveInfoRenderMixin"
     ],
     "injectors": {
         "defaultRequire": 1

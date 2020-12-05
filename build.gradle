@@ -33,7 +33,7 @@ ext.Versions = new Properties()
 Versions.load(file("Versionfiles/mcversion-20w46a.properties").newReader())
 
 archivesBaseName = "beenfo"
-ext.projectVersion = "1.2"
+ext.projectVersion = "1.3"
 
 version = "${Versions['minecraft_version']}-fabric${Versions['fabric_versiononly']}-${project.projectVersion}"
 
@@ -68,6 +68,8 @@ dependencies {
     modImplementation "io.github.prospector:modmenu:${Versions['modmenu_version']}"
     modImplementation "de.guntram.mcmod:crowdin-translate:1.2"
     include "de.guntram.mcmod:crowdin-translate:1.2"
+    modImplementation "de.guntram.mcmod:GBfabrictools:${Versions['gbfabrictools_version']}"
+    include    "de.guntram.mcmod:GBfabrictools:${Versions['gbfabrictools_version']}"
 }
 
 // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
@@ -79,9 +81,6 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 }
 
 jar {
+    dependsOn downloadTranslations
 	from "LICENSE"
-}
-
-build {
-        dependsOn downloadTranslations
 }
