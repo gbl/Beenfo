@@ -31,7 +31,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 ext.Versions = new Properties()
-Versions.load(file("Versionfiles/mcversion-20w51a.properties").newReader())
+Versions.load(file("Versionfiles/mcversion-21w03a.properties").newReader())
 
 archivesBaseName = "beenfo"
 ext.projectVersion = "1.3"
@@ -81,9 +81,12 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 	from sourceSets.main.allSource
 }
 
-jar {
+build {
     dependsOn downloadTranslations
-	from "LICENSE"
+}
+
+jar {
+    from "LICENSE"
 }
 
 import com.modrinth.minotaur.TaskModrinthUpload

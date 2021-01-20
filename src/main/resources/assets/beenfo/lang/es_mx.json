@@ -3,10 +3,10 @@
     "tooltip.unnamed": "§7- abeja sin nombre",
     "tooltip.honey": "§6%s Miel",
     "tooltip.name": "§e- %s",
-    "beenfo.config.showpopup": "Show crosshair popup",
-    "beenfo.config.popupxpercent": "Popup position left to right",
-    "beenfo.config.popupypercent": "Popup position top to down",
-    "beenfo.config.tt.showpopup": "Show a popup when you're looking at a hive or nest",
-    "beenfo.config.tt.popupxpercent": "Select the popup position on the screen",
-    "beenfo.config.tt.popupypercent": "Select the popup position on the screen"
+    "beenfo.config.showpopup": "Mostrar ventana emergente de punto de mira",
+    "beenfo.config.popupxpercent": "Posicion de ventana emergente izquierda a derecha",
+    "beenfo.config.popupypercent": "Posicion de ventana emergente superior a inferior",
+    "beenfo.config.tt.showpopup": "Mostrar una ventana emergente cuando miras a un enjambre o nido",
+    "beenfo.config.tt.popupxpercent": "Selecciona la position de la ventana emergente en la pantalla",
+    "beenfo.config.tt.popupypercent": "Selecciona la position de la ventana emergente en la pantalla"
 }
