@@ -3,10 +3,10 @@
     "tooltip.unnamed": "§7- isimsiz arı",
     "tooltip.honey": "§6%s Bal",
     "tooltip.name": "§e- %s",
-    "beenfo.config.showpopup": "Show crosshair popup",
-    "beenfo.config.popupxpercent": "Popup position left to right",
-    "beenfo.config.popupypercent": "Popup position top to down",
-    "beenfo.config.tt.showpopup": "Show a popup when you're looking at a hive or nest",
-    "beenfo.config.tt.popupxpercent": "Select the popup position on the screen",
-    "beenfo.config.tt.popupypercent": "Select the popup position on the screen"
+    "beenfo.config.showpopup": "Artı imleç açılır kutucuğunu göster",
+    "beenfo.config.popupxpercent": "Açılır kutucuk konumu soldan sağa",
+    "beenfo.config.popupypercent": "Açılır kutucuk konumu yukarıdan aşağıya",
+    "beenfo.config.tt.showpopup": "Bir kovana veya yuvaya bakarken bir açılır kutucuk göster",
+    "beenfo.config.tt.popupxpercent": "Ekrandaki açılır kutucuk konumunu seç",
+    "beenfo.config.tt.popupypercent": "Ekrandaki açılır kutucuk konumunu seç"
 }
