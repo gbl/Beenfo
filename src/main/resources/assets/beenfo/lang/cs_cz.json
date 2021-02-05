@@ -1,12 +1,12 @@
 {
-    "tooltip.bees": "§6%d Bees",
-    "tooltip.unnamed": "§7- nameless bee",
-    "tooltip.honey": "§6%s Honey",
+    "tooltip.bees": "§6%d Včely",
+    "tooltip.unnamed": "§7- bezejmenná včela",
+    "tooltip.honey": "§6%s Med",
     "tooltip.name": "§e- %s",
-    "beenfo.config.showpopup": "Show crosshair popup",
-    "beenfo.config.popupxpercent": "Popup position left to right",
-    "beenfo.config.popupypercent": "Popup position top to down",
-    "beenfo.config.tt.showpopup": "Show a popup when you're looking at a hive or nest",
-    "beenfo.config.tt.popupxpercent": "Select the popup position on the screen",
-    "beenfo.config.tt.popupypercent": "Select the popup position on the screen"
+    "beenfo.config.showpopup": "Zobrazit vyskakovací okno při namíření na úl nebo hnízdo",
+    "beenfo.config.popupxpercent": "Vyskakovací pozice zleva doprava",
+    "beenfo.config.popupypercent": "Vyskakovací pozice shora dolů",
+    "beenfo.config.tt.showpopup": "Zobrazit vyskakovací okno při pohledu na úl nebo hnízdo",
+    "beenfo.config.tt.popupxpercent": "Vyberte pozici vyskakovacího okna na obrazovce",
+    "beenfo.config.tt.popupypercent": "Vyberte pozici vyskakovacího okna na obrazovce"
 }
