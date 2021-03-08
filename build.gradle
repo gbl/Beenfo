@@ -31,7 +31,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 ext.Versions = new Properties()
-Versions.load(file("Versionfiles/mcversion-21w07a.properties").newReader())
+Versions.load(file("Versionfiles/mcversion-21w08b.properties").newReader())
 
 archivesBaseName = "beenfo"
 ext.projectVersion = "1.3"
