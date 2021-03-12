@@ -5,6 +5,7 @@
  */
 package de.guntram.mcmod.beenfo.mixin;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import de.guntram.mcmod.beenfo.Beenfo;
 import de.guntram.mcmod.beenfo.config.ConfigurationHandler;
 import io.netty.buffer.Unpooled;
@@ -73,7 +74,7 @@ public class HiveInfoRenderMixin extends DrawableHelper {
             }
             
             int honey = state.get(HONEY_LEVEL);
-            client.getTextureManager().bindTexture(Beenfo.HUD_TEXTURE);
+            RenderSystem.setShaderTexture(0, Beenfo.HUD_TEXTURE);
             int x=(client.getWindow().getScaledWidth()-82)*ConfigurationHandler.getXPercent()/100;
             int y=(client.getWindow().getScaledHeight()-59)*ConfigurationHandler.getYPercent()/100;
             this.drawTexture(stack, x, y, 0, 0, 82, 59);

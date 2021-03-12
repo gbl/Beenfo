@@ -1,5 +1,6 @@
 package de.guntram.mcmod.beenfo;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.client.gui.screen.Screen;
@@ -52,7 +53,7 @@ public class BeenfoScreen extends Screen {
             return;
         }
         renderBackground(stack, 0);
-        this.client.getTextureManager().bindTexture(TEXTURE);
+        RenderSystem.setShaderTexture(0, TEXTURE);
         this.drawTexture(stack, x, y, 0, 0, 176, 30);
         int minRows = Math.max(3, beeNames.size());
         for (int i=0; i<minRows; i++) {

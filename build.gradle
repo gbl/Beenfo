@@ -11,7 +11,7 @@ buildscript {
 }
 
 plugins {
-	id 'fabric-loom' version '0.4-SNAPSHOT'
+	id 'fabric-loom' version '0.6-SNAPSHOT'
 	id "com.modrinth.minotaur" version "1.1.0"
 }
 
@@ -22,16 +22,19 @@ repositories {
 	maven {
 		url = "https://maven.fabricmc.net/"
 	}
-    maven {
-        url = "https://minecraft.guntram.de/maven/"
-    }
+        maven {
+                url = "https://minecraft.guntram.de/maven/"
+        }
+	maven {
+		url = "https://maven.terraformersmc.com/releases/"
+	}
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 ext.Versions = new Properties()
-Versions.load(file("Versionfiles/mcversion-21w08b.properties").newReader())
+Versions.load(file("Versionfiles/mcversion-21w10a.properties").newReader())
 
 archivesBaseName = "beenfo"
 ext.projectVersion = "1.3"
@@ -66,7 +69,7 @@ dependencies {
     mappings   "net.fabricmc:yarn:${Versions['yarn_mappings']}:v2"
     modImplementation "net.fabricmc:fabric-loader:${Versions['loader_version']}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${Versions['fabric_version']}"
-    modImplementation "io.github.prospector:modmenu:${Versions['modmenu_version']}"
+    modImplementation "com.terraformersmc:modmenu:${Versions['modmenu_version']}"
     modImplementation "de.guntram.mcmod:crowdin-translate:${Versions['crowdintranslate_version']}"
     include "de.guntram.mcmod:crowdin-translate:${Versions['crowdintranslate_version']}"
     modImplementation "de.guntram.mcmod:GBfabrictools:${Versions['gbfabrictools_version']}"
