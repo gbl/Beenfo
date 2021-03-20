@@ -7,8 +7,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,7 +23,7 @@ public abstract class TooltipMixin {
     
     @Shadow public abstract boolean isEmpty();
     @Shadow public abstract Item getItem();
-    @Shadow public abstract CompoundTag getTag();
+    @Shadow public abstract NbtCompound getTag();
     
 //    @Inject(method="getTooltip(Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/client/util/ITooltipFlag;)Ljava/util/List",
     @Inject(method="getTooltip",            
@@ -34,7 +34,7 @@ public abstract class TooltipMixin {
 
         try {
             if (!this.isEmpty() && (this.getItem() == Items.BEEHIVE || this.getItem() == Items.BEE_NEST)) {
-                CompoundTag tag = this.getTag();
+                NbtCompound tag = this.getTag();
                 if (tag != null) {
                     
                     int honeyLevel = tag.getCompound("BlockStateTag").getInt("honey_level");
@@ -46,7 +46,7 @@ public abstract class TooltipMixin {
                         }
                     }
 
-                    ListTag bees = tag.getCompound("BlockEntityTag").getList("Bees", 10);
+                    NbtList bees = tag.getCompound("BlockEntityTag").getList("Bees", 10);
                     int beeCount = bees.size();
 
                     // Insert our lines in reverse order and always at the beginning of the list,

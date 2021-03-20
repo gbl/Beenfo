@@ -13,8 +13,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BeehiveBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.network.PacketByteBuf;
 import static net.minecraft.state.property.Properties.HONEY_LEVEL;
 import net.minecraft.util.math.BlockPos;
@@ -28,7 +28,7 @@ public class BeenfoServer implements ModInitializer {
     // duplicate this here because we don't want to pull in Beenfo.class as 
     // that needs Screen which isn't present on dedi servers
 
-    public static void sendBeehiveInfo(PlayerEntity player, int honeyLevel, ListTag bees) {
+    public static void sendBeehiveInfo(PlayerEntity player, int honeyLevel, NbtList bees) {
         PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
         buf.writeInt(honeyLevel);
         if (bees == null) {
@@ -36,7 +36,7 @@ public class BeenfoServer implements ModInitializer {
         } else {
             buf.writeInt(bees.size());
             for (int i=0; i<bees.size(); i++) {
-                CompoundTag tag = bees.getCompound(i).getCompound("EntityData");
+                NbtCompound tag = bees.getCompound(i).getCompound("EntityData");
                 if (tag != null && tag.contains("CustomName", 8)) {
                     String beeName = tag.getString("CustomName");
                     buf.writeString(beeName);
@@ -71,7 +71,7 @@ public class BeenfoServer implements ModInitializer {
         buf.writeInt(honey);
         if (entity instanceof BeehiveBlockEntity) {
             BeehiveBlockEntity bbe = (BeehiveBlockEntity) entity;
-            ListTag tag = bbe.getBees();
+            NbtList tag = bbe.getBees();
             if (tag == null) {
                 buf.writeInt(0);
             } else {

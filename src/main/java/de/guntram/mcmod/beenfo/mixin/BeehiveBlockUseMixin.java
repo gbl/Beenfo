@@ -15,7 +15,7 @@ import net.minecraft.block.entity.BeehiveBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -46,7 +46,7 @@ public class BeehiveBlockUseMixin {
             // Any item that isn't a block will return Blocks.AIR here
             if (block == Blocks.AIR) {
                 int honey = blockState.get(HONEY_LEVEL);
-                ListTag tag = null;
+                NbtList tag = null;
                 BlockEntity entity = world.getBlockEntity(blockPos);
                 if (entity instanceof BeehiveBlockEntity) {
                     BeehiveBlockEntity bbe = (BeehiveBlockEntity) entity;
