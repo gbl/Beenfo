@@ -1,12 +1,12 @@
 {
-    "tooltip.bees": "§6%d Bees",
-    "tooltip.unnamed": "§7- nameless bee",
-    "tooltip.honey": "§6%s Honey",
+    "tooltip.bees": "§6%d 蜜蜂",
+    "tooltip.unnamed": "§7- 未命名蜜蜂",
+    "tooltip.honey": "§6%s 蜂蜜",
     "tooltip.name": "§e- %s",
-    "beenfo.config.showpopup": "Show crosshair popup",
-    "beenfo.config.popupxpercent": "Popup position left to right",
-    "beenfo.config.popupypercent": "Popup position top to down",
-    "beenfo.config.tt.showpopup": "Show a popup when you're looking at a hive or nest",
-    "beenfo.config.tt.popupxpercent": "Select the popup position on the screen",
-    "beenfo.config.tt.popupypercent": "Select the popup position on the screen"
+    "beenfo.config.showpopup": "顯示彈出窗口",
+    "beenfo.config.popupxpercent": "彈出位置-左到右",
+    "beenfo.config.popupypercent": "彈出位置-上到下",
+    "beenfo.config.tt.showpopup": "再查看蜂巢時顯示彈出窗口",
+    "beenfo.config.tt.popupxpercent": "選擇螢幕上的彈出位置",
+    "beenfo.config.tt.popupypercent": "選擇螢幕上的彈出位置"
 }

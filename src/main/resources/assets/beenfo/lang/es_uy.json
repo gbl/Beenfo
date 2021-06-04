@@ -1,12 +1,12 @@
 {
-    "tooltip.bees": "§6%d Abejas",
+    "tooltip.bees": "Abejas: §6%d",
     "tooltip.unnamed": "§7- abeja sin nombre",
-    "tooltip.honey": "§6%s Miel",
+    "tooltip.honey": "Nivel de miel: §6%s",
     "tooltip.name": "§e- %s",
-    "beenfo.config.showpopup": "Mostrar ventana emergente de punto de mira",
-    "beenfo.config.popupxpercent": "Posicion de ventana emergente izquierda a derecha",
-    "beenfo.config.popupypercent": "Posicion de ventana emergente superior a inferior",
-    "beenfo.config.tt.showpopup": "Mostrar una ventana emergente cuando miras a un enjambre o nido",
-    "beenfo.config.tt.popupxpercent": "Selecciona la position de la ventana emergente en la pantalla",
-    "beenfo.config.tt.popupypercent": "Selecciona la position de la ventana emergente en la pantalla"
+    "beenfo.config.showpopup": "Mostrar ventana en mira",
+    "beenfo.config.popupxpercent": "Posición horizontal",
+    "beenfo.config.popupypercent": "Posición vertical",
+    "beenfo.config.tt.showpopup": "Mostrar ventana al mirar un apiario/colmena de abejas",
+    "beenfo.config.tt.popupxpercent": "Posición horizontal",
+    "beenfo.config.tt.popupypercent": "Posición vertical"
 }
