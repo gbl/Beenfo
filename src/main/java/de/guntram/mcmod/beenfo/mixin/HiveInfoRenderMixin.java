@@ -7,6 +7,7 @@ package de.guntram.mcmod.beenfo.mixin;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.guntram.mcmod.beenfo.Beenfo;
+import de.guntram.mcmod.beenfo.BeenfoServer;
 import de.guntram.mcmod.beenfo.config.ConfigurationHandler;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
@@ -70,7 +71,7 @@ public class HiveInfoRenderMixin extends DrawableHelper {
                 PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
                 buf.writeInt(0);        // packet version
                 buf.writeBlockPos(blockPos);
-                ClientSidePacketRegistry.INSTANCE.sendToServer(Beenfo.C2SPacketIdentifier, buf);
+                ClientSidePacketRegistry.INSTANCE.sendToServer(BeenfoServer.C2SPacketIdentifier, buf);
             }
             
             int honey = state.get(HONEY_LEVEL);

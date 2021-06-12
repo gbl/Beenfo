@@ -22,10 +22,6 @@ public class Beenfo implements ClientModInitializer
     public static final String MODID = "beenfo";
     public static final String MODNAME = "Beenfo";
     
-    public static final Identifier C2SPacketIdentifier = new Identifier(MODID, "c2s");    
-    public static final Identifier S2CPacketIdentifierOpen = new Identifier(MODID, "s2c");
-    public static final Identifier S2CPacketIdentifierHud = new Identifier(MODID, "s2chud");
-    
     public static BlockPos lastHiveResponseBlockPos = null;
     public static int lastHiveResponseHoneyLevel = 0;
     public static int lastHiveResponseBeeCount = 0;
@@ -39,8 +35,8 @@ public class Beenfo implements ClientModInitializer
         ConfigurationHandler confHandler = ConfigurationHandler.getInstance();
         ConfigurationProvider.register(MODNAME, confHandler);
         confHandler.load(ConfigurationProvider.getSuggestedFile(MODID));        
-        ClientSidePacketRegistry.INSTANCE.register(Beenfo.S2CPacketIdentifierOpen, this::gotHiveInfoOpen);
-        ClientSidePacketRegistry.INSTANCE.register(Beenfo.S2CPacketIdentifierHud, this::gotHiveInfoHud);
+        ClientSidePacketRegistry.INSTANCE.register(BeenfoServer.S2CPacketIdentifierOpen, this::gotHiveInfoOpen);
+        ClientSidePacketRegistry.INSTANCE.register(BeenfoServer.S2CPacketIdentifierHud, this::gotHiveInfoHud);
         CrowdinTranslate.downloadTranslations(MODID);
     }
 
