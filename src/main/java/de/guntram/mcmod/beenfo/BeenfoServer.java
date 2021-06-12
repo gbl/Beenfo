@@ -17,6 +17,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.PacketByteBuf;
 import static net.minecraft.state.property.Properties.HONEY_LEVEL;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
 /**
@@ -27,6 +28,9 @@ public class BeenfoServer implements ModInitializer {
 
     // duplicate this here because we don't want to pull in Beenfo.class as 
     // that needs Screen which isn't present on dedi servers
+    public static final Identifier C2SPacketIdentifier = new Identifier(Beenfo.MODID, "c2s");    
+    public static final Identifier S2CPacketIdentifierOpen = new Identifier(Beenfo.MODID, "s2c");
+    public static final Identifier S2CPacketIdentifierHud = new Identifier(Beenfo.MODID, "s2chud");
 
     public static void sendBeehiveInfo(PlayerEntity player, int honeyLevel, ListTag bees) {
         PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
@@ -45,12 +49,12 @@ public class BeenfoServer implements ModInitializer {
                 }
             }
         }
-        ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, Beenfo.S2CPacketIdentifierOpen, buf);
+        ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, S2CPacketIdentifierOpen, buf);
     }
 
     @Override
     public void onInitialize() {
-        ServerSidePacketRegistry.INSTANCE.register(Beenfo.C2SPacketIdentifier,
+        ServerSidePacketRegistry.INSTANCE.register(C2SPacketIdentifier,
                 (packetContext, attachedData) -> {
                     processClientPacket(packetContext, attachedData);
                 });
@@ -81,6 +85,6 @@ public class BeenfoServer implements ModInitializer {
             buf.writeInt(0);
         }
         buf.writeBlockPos(pos);
-        ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, Beenfo.S2CPacketIdentifierHud, buf);
+        ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, S2CPacketIdentifierHud, buf);
     }
 }
