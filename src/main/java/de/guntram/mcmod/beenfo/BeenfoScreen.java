@@ -37,6 +37,9 @@ public class BeenfoScreen extends Screen {
 
     @Override
     protected void init() {
+        System.out.println("BeenfoScreen init called:");
+        System.out.println("Thread is "+Thread.currentThread().getName());
+        new Exception().printStackTrace();
         super.init();
         int minRows = Math.min(3, beeNames.size());
         int usedHeight = 30 + minRows*30 + 8;

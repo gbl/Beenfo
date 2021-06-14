@@ -38,7 +38,7 @@ ext.Versions = new Properties()
 Versions.load(file("Versionfiles/mcversion-1.17.properties").newReader())
 
 archivesBaseName = "beenfo"
-ext.projectVersion = "1.3.1"
+ext.projectVersion = "1.3.1-debug"
 
 version = "${Versions['minecraft_version']}-fabric${Versions['fabric_versiononly']}-${project.projectVersion}"
 
@@ -62,8 +62,6 @@ dependencies {
 
     compileOnly files('/home/gbl/SoftwareProjects/MyProjects/MinecraftPlugins/libraries/spigot-1.16.4.jar')
 
-    minecraft  "com.mojang:minecraft:${Versions['minecraft_version']}"
-    mappings   "net.fabricmc:yarn:${Versions['yarn_mappings']}:v2"
     modImplementation "net.fabricmc:fabric-loader:${Versions['loader_version']}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${Versions['fabric_version']}"
     modImplementation "com.terraformersmc:modmenu:${Versions['modmenu_version']}"
@@ -71,6 +69,8 @@ dependencies {
     include "de.guntram.mcmod:crowdin-translate:${Versions['crowdintranslate_version']}"
     modImplementation "de.guntram.mcmod:GBfabrictools:${Versions['gbfabrictools_version']}"
     include    "de.guntram.mcmod:GBfabrictools:${Versions['gbfabrictools_version']}"
+    minecraft  "com.mojang:minecraft:${Versions['minecraft_version']}"
+    mappings   "net.fabricmc:yarn:${Versions['yarn_mappings']}:v2"
 }
 
 // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task

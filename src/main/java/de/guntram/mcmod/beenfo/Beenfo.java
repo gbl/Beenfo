@@ -10,6 +10,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
 import net.fabricmc.fabric.api.network.PacketContext;
+import net.minecraft.SharedConstants;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.network.PacketByteBuf;
@@ -53,7 +54,10 @@ public class Beenfo implements ClientModInitializer
             beeNames.add(beeName);
         }
         context.getTaskQueue().execute(() -> {
+            SharedConstants.isDevelopment = true;
+            System.out.println("opening screen on "+Thread.currentThread().getName());
             MinecraftClient.getInstance().openScreen(new BeenfoScreen(null, honeyLevel, beeNames));
+            SharedConstants.isDevelopment = true;
         });
     }
     
