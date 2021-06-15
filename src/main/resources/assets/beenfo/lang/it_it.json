@@ -1,12 +1,12 @@
 {
-    "tooltip.bees": "§6%d Bees",
-    "tooltip.unnamed": "§7- nameless bee",
-    "tooltip.honey": "§6%s Honey",
+    "tooltip.bees": "§6%d Api",
+    "tooltip.unnamed": "§7- Ape senza nome",
+    "tooltip.honey": "§6%s Miele",
     "tooltip.name": "§e- %s",
-    "beenfo.config.showpopup": "Show crosshair popup",
-    "beenfo.config.popupxpercent": "Popup position left to right",
-    "beenfo.config.popupypercent": "Popup position top to down",
-    "beenfo.config.tt.showpopup": "Show a popup when you're looking at a hive or nest",
-    "beenfo.config.tt.popupxpercent": "Select the popup position on the screen",
-    "beenfo.config.tt.popupypercent": "Select the popup position on the screen"
+    "beenfo.config.showpopup": "Mostra popup del mirino",
+    "beenfo.config.popupxpercent": "Posizione popup da sinistra a destra",
+    "beenfo.config.popupypercent": "Posizione popup dall'alto verso il basso",
+    "beenfo.config.tt.showpopup": "Mostra un popup mentre stai guardando un alveare o un nido",
+    "beenfo.config.tt.popupxpercent": "Seleziona la posizione del popup sullo schermo",
+    "beenfo.config.tt.popupypercent": "Seleziona la posizione del popup sullo schermo"
 }
