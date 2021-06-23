@@ -6,7 +6,7 @@
     "beenfo.config.showpopup": "顯示彈出窗口",
     "beenfo.config.popupxpercent": "彈出位置-左到右",
     "beenfo.config.popupypercent": "彈出位置-上到下",
-    "beenfo.config.tt.showpopup": "再查看蜂巢時顯示彈出窗口",
+    "beenfo.config.tt.showpopup": "在查看蜂巢時顯示彈出窗口",
     "beenfo.config.tt.popupxpercent": "選擇螢幕上的彈出位置",
     "beenfo.config.tt.popupypercent": "選擇螢幕上的彈出位置"
 }
