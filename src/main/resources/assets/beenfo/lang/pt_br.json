@@ -2,5 +2,11 @@
     "tooltip.bees": "§6%d Abelha(s)",
     "tooltip.unnamed": "§7- abelha sem nome",
     "tooltip.honey": "§6%s Mel",
-    "tooltip.name": "§e- %s"
+    "tooltip.name": "§e- %s",
+    "beenfo.config.showpopup": "Mostrar popup na mira",
+    "beenfo.config.popupxpercent": "Posição pop-up da esquerda para a direita",
+    "beenfo.config.popupypercent": "Posição popup cima para baixo",
+    "beenfo.config.tt.showpopup": "Mostrar um pop-up quando você estiver olhando para uma colmeia",
+    "beenfo.config.tt.popupxpercent": "Selecione a posição do popup na tela",
+    "beenfo.config.tt.popupypercent": "Selecione a posição do popup na tela"
 }

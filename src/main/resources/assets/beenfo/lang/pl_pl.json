@@ -1,6 +1,12 @@
 {
     "tooltip.bees": "§6%d Pszczoły",
-    "tooltip.unnamed": "§7- Bez nazwy",
+    "tooltip.unnamed": "§7- Pszczoła bez nazwy",
     "tooltip.honey": "§6%s Miód",
-    "tooltip.name": "§e- %s"
+    "tooltip.name": "§e- %s",
+    "beenfo.config.showpopup": "Pokaż wyskakujące okienko na celowniku",
+    "beenfo.config.popupxpercent": "Wyskakujące okienko z lewej do prawej",
+    "beenfo.config.popupypercent": "Wyskakujące okienko z góry do dołu",
+    "beenfo.config.tt.showpopup": "Pokaż wyskakujące okienko, gdy patrzysz na ul lub gniazdo",
+    "beenfo.config.tt.popupxpercent": "Wybierz pozycję wyskakującego okna na ekranie",
+    "beenfo.config.tt.popupypercent": "Wybierz pozycję wyskakującego okna na ekranie"
 }

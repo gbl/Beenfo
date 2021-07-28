@@ -1,6 +1,12 @@
 {
-    "tooltip.bees": "§6%d Bees",
-    "tooltip.unnamed": "§7- nameless bee",
-    "tooltip.honey": "§6%s Honey",
-    "tooltip.name": "§e- %s"
+    "tooltip.bees": "§6%d Bijen",
+    "tooltip.unnamed": "§7- naamloze bij",
+    "tooltip.honey": "§6%s Honing",
+    "tooltip.name": "§e- %s",
+    "beenfo.config.showpopup": "Toon crosshair popup",
+    "beenfo.config.popupxpercent": "Popup positie van links naar rechts",
+    "beenfo.config.popupypercent": "Popup positie van boven naar beneden",
+    "beenfo.config.tt.showpopup": "Toon een popup wanneer je naar een bijenkorf of nest kijkt",
+    "beenfo.config.tt.popupxpercent": "Selecteer de popup positie op het scherm",
+    "beenfo.config.tt.popupypercent": "Selecteer de popup positie op het scherm"
 }

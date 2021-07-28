@@ -1,0 +1,12 @@
+{
+    "tooltip.bees": "§6%d דבורים",
+    "tooltip.unnamed": "§7- דבורים ללא שם",
+    "tooltip.honey": "§6%s דבש",
+    "tooltip.name": "§e- %s",
+    "beenfo.config.showpopup": "הצגת פופאפ כוונת",
+    "beenfo.config.popupxpercent": "מיקום פופאפ משמאל לימין",
+    "beenfo.config.popupypercent": "מיקום פופאפ מלמעלה למטה",
+    "beenfo.config.tt.showpopup": "הצגת פופאפ כאשר הכוונת על כוורת",
+    "beenfo.config.tt.popupxpercent": "סימון מיקום הפופאפ על המסך",
+    "beenfo.config.tt.popupypercent": "סימון מיקום הפופאפ על המסך"
+}

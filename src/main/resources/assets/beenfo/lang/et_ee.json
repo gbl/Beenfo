@@ -1,0 +1,12 @@
+{
+    "tooltip.bees": "§6%d mesilast",
+    "tooltip.unnamed": "§7- nimetu mesilane",
+    "tooltip.honey": "§6%s mett",
+    "tooltip.name": "§e- %s",
+    "beenfo.config.showpopup": "Kuva sihtimisristi hüpik",
+    "beenfo.config.popupxpercent": "Hüpiku asukoht vasakult paremale",
+    "beenfo.config.popupypercent": "Hüpiku asukoht ülevalt alla",
+    "beenfo.config.tt.showpopup": "Kuva hüpikut taru või pesa vaatamisel",
+    "beenfo.config.tt.popupxpercent": "Määra hüpiku asukoht ekraanil",
+    "beenfo.config.tt.popupypercent": "Määra hüpiku asukoht ekraanil"
+}

@@ -1,6 +1,12 @@
 {
-    "tooltip.bees": "§6%d Abejas",
+    "tooltip.bees": "Abejas: §6%d",
     "tooltip.unnamed": "§7- abeja sin nombre",
-    "tooltip.honey": "§6%s Miel",
-    "tooltip.name": "§e- %s"
+    "tooltip.honey": "Nivel de miel: §6%s",
+    "tooltip.name": "§e- %s",
+    "beenfo.config.showpopup": "Mostrar ventana en mira",
+    "beenfo.config.popupxpercent": "Posición horizontal",
+    "beenfo.config.popupypercent": "Posición vertical",
+    "beenfo.config.tt.showpopup": "Mostrar ventana al mirar un apiario/colmena de abejas",
+    "beenfo.config.tt.popupxpercent": "Posición horizontal",
+    "beenfo.config.tt.popupypercent": "Posición vertical"
 }
