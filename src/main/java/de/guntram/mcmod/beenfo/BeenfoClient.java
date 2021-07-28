@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
-import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 public class BeenfoClient implements Consumer<NetworkEvent>
 {
@@ -21,18 +21,18 @@ public class BeenfoClient implements Consumer<NetworkEvent>
         context.setPacketHandled(true);
     }
     
-    private void gotHiveInfo(Object context, PacketBuffer buffer) {
+    private void gotHiveInfo(Object context, FriendlyByteBuf buffer) {
         int honeyLevel, beeCount;
-        ClientPlayerEntity player = Minecraft.getInstance().player;
+        LocalPlayer player = Minecraft.getInstance().player;
         List<String> beeNames = new ArrayList<>();
         
         honeyLevel = buffer.readInt();
         beeCount = buffer.readInt();
 
         for (int i=0; i<beeCount; i++) {
-            String beeName=buffer.readString();
+            String beeName=buffer.readUtf();
             beeNames.add(beeName);
         }
-        Minecraft.getInstance().displayGuiScreen(new BeenfoScreen(null, honeyLevel, beeNames));
+        Minecraft.getInstance().setScreen(new BeenfoScreen(null, honeyLevel, beeNames));
     }
 }

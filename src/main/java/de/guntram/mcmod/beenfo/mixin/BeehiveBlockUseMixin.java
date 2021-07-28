@@ -6,19 +6,19 @@
 package de.guntram.mcmod.beenfo.mixin;
 
 import de.guntram.mcmod.beenfo.BeenfoServer;
-import static net.minecraft.block.BeehiveBlock.HONEY_LEVEL;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.tileentity.BeehiveTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import static net.minecraft.world.level.block.BeehiveBlock.HONEY_LEVEL;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BeehiveBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -33,29 +33,29 @@ public class BeehiveBlockUseMixin {
     @SubscribeEvent
     public void onUseStick(PlayerInteractEvent.RightClickBlock event) {
 
-        World world = event.getWorld();
+        Level world = event.getWorld();
         BlockPos blockPos = event.getPos();
-        PlayerEntity playerEntity = event.getPlayer();
-        Hand hand = event.getHand();
+        Player playerEntity = event.getPlayer();
+        InteractionHand hand = event.getHand();
         BlockState blockState = world.getBlockState(blockPos);
         
-        if (!world.isRemote()) {
+        if (!world.isClientSide()) {
             
             Item item = event.getItemStack().getItem();
-            Block block = Block.getBlockFromItem(item);
+            Block block = Block.byItem(item);
             // Any item that isn't a block will return Blocks.AIR here
             if (block == Blocks.AIR && item != Items.SHEARS && item != Items.GLASS_BOTTLE) {
-                ListNBT tag = null;
-                TileEntity entity = world.getTileEntity(blockPos);
-                if (entity instanceof BeehiveTileEntity) {
-                    BeehiveTileEntity bbe = (BeehiveTileEntity) entity;
-                    tag = bbe.getBees();
+                ListTag tag = null;
+                BlockEntity entity = world.getBlockEntity(blockPos);
+                if (entity instanceof BeehiveBlockEntity) {
+                    BeehiveBlockEntity bbe = (BeehiveBlockEntity) entity;
+                    tag = bbe.writeBees();
                 } else {
                     return;
                 }
                 int honey = 0;
                 if (blockState.hasProperty(HONEY_LEVEL)) {       // hasProperty
-                    honey = blockState.get(HONEY_LEVEL);
+                    honey = blockState.getValue(HONEY_LEVEL);
                 }
                 // System.out.println(honey + " honey, "+tag.size()+" bees"+", item="+playerEntity.getHeldItem(hand).getItem());
                 BeenfoServer.sendBeehiveInfo(playerEntity, honey, tag);

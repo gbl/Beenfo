@@ -1,13 +1,13 @@
 package de.guntram.mcmod.beenfo.mixin;
 
 import java.util.List;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.client.resources.language.I18n;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -17,16 +17,16 @@ public class TooltipMixin {
    @SubscribeEvent
     public void getTooltipdone(final ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
-        List<ITextComponent> list = event.getToolTip();
+        List<Component> list = event.getToolTip();
         try {
             if (!stack.isEmpty()) {
-                CompoundNBT tag = stack.getTag();
+                CompoundTag tag = stack.getTag();
                 if (tag == null)
                     return;
-                CompoundNBT bsTag = tag.getCompound("BlockStateTag");
+                CompoundTag bsTag = tag.getCompound("BlockStateTag");
                 if (bsTag == null || !bsTag.contains("honey_level"))
                     return;
-                CompoundNBT beTag = tag.getCompound("BlockEntityTag");
+                CompoundTag beTag = tag.getCompound("BlockEntityTag");
                 if (beTag == null || !beTag.contains("Bees"))
                     return;
                 
@@ -39,7 +39,7 @@ public class TooltipMixin {
                     }
                 }
 
-                ListNBT bees = beTag.getList("Bees", 10);
+                ListTag bees = beTag.getList("Bees", 10);
                 int beeCount = bees.size();
 
                 // Insert our lines in reverse order and always at the beginning of the list,
@@ -50,12 +50,12 @@ public class TooltipMixin {
                     if (tag != null && tag.contains("CustomName", 8))
                     {
                         String beeName = tag.getString("CustomName");
-                        list.add(Math.min(1, list.size()), new StringTextComponent(I18n.format("tooltip.name", ITextComponent.Serializer.getComponentFromJson(beeName).getString())));
+                        list.add(Math.min(1, list.size()), new TextComponent(I18n.get("tooltip.name", Component.Serializer.fromJson(beeName).getString())));
                     }
                 }
 
-                list.add(Math.min(1, list.size()), new StringTextComponent(I18n.format("tooltip.bees", beeCount)));
-                list.add(Math.min(1, list.size()), new StringTextComponent(I18n.format("tooltip.honey", honeyLevel)));
+                list.add(Math.min(1, list.size()), new TextComponent(I18n.get("tooltip.bees", beeCount)));
+                list.add(Math.min(1, list.size()), new TextComponent(I18n.get("tooltip.honey", honeyLevel)));
             }
         } catch (NullPointerException ex) {
             System.out.println("NPE in getTooltipdone");
@@ -64,7 +64,7 @@ public class TooltipMixin {
                 if (item == null) {
                     System.out.println("item is null");
                 } else {
-                    System.out.println("item is "+stack.getItem().getTranslationKey());
+                    System.out.println("item is "+stack.getItem().getDescriptionId());
                 }
             } catch (NullPointerException ex2) {
 
