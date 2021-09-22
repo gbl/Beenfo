@@ -23,7 +23,7 @@ public abstract class TooltipMixin {
     
     @Shadow public abstract boolean isEmpty();
     @Shadow public abstract Item getItem();
-    @Shadow public abstract NbtCompound getTag();
+    @Shadow public abstract NbtCompound getNbt();
     
 //    @Inject(method="getTooltip(Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/client/util/ITooltipFlag;)Ljava/util/List",
     @Inject(method="getTooltip",            
@@ -34,7 +34,7 @@ public abstract class TooltipMixin {
 
         try {
             if (!this.isEmpty() && (this.getItem() == Items.BEEHIVE || this.getItem() == Items.BEE_NEST)) {
-                NbtCompound tag = this.getTag();
+                NbtCompound tag = this.getNbt();
                 if (tag != null) {
                     
                     int honeyLevel = tag.getCompound("BlockStateTag").getInt("honey_level");

@@ -1,12 +1,12 @@
 {
-    "tooltip.bees": "§6%d Bees",
-    "tooltip.unnamed": "§7- nameless bee",
-    "tooltip.honey": "§6%s Honey",
+    "tooltip.bees": "§6%d Bin",
+    "tooltip.unnamed": "§7- namnlöst bi",
+    "tooltip.honey": "§6%s Honung",
     "tooltip.name": "§e- %s",
-    "beenfo.config.showpopup": "Show crosshair popup",
-    "beenfo.config.popupxpercent": "Popup position left to right",
-    "beenfo.config.popupypercent": "Popup position top to down",
-    "beenfo.config.tt.showpopup": "Show a popup when you're looking at a hive or nest",
-    "beenfo.config.tt.popupxpercent": "Select the popup position on the screen",
-    "beenfo.config.tt.popupypercent": "Select the popup position on the screen"
+    "beenfo.config.showpopup": "Visa popup för hårkorset",
+    "beenfo.config.popupxpercent": "Popup-position vänster till höger",
+    "beenfo.config.popupypercent": "Popup-position uppifrån och ner",
+    "beenfo.config.tt.showpopup": "Visa ett popup-fönster när du tittar på en bikupa eller ett bo",
+    "beenfo.config.tt.popupxpercent": "Välj popup-position på skärmen",
+    "beenfo.config.tt.popupypercent": "Välj popup-position på skärmen"
 }

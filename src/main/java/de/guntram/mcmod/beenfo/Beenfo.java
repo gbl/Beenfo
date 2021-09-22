@@ -53,7 +53,7 @@ public class Beenfo implements ClientModInitializer
             beeNames.add(beeName);
         }
         context.getTaskQueue().execute(() -> {
-            MinecraftClient.getInstance().openScreen(new BeenfoScreen(null, honeyLevel, beeNames));
+            MinecraftClient.getInstance().setScreen(new BeenfoScreen(null, honeyLevel, beeNames));
         });
     }
     
