@@ -7,15 +7,17 @@ package de.guntram.mcmod.beenfo;
 
 import io.netty.buffer.Unpooled;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.network.PacketContext;
-import net.fabricmc.fabric.api.network.ServerSidePacketRegistry;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BeehiveBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayNetworkHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
 import static net.minecraft.state.property.Properties.HONEY_LEVEL;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -26,13 +28,26 @@ import net.minecraft.util.math.BlockPos;
  */
 public class BeenfoServer implements ModInitializer {
 
-    // duplicate this here because we don't want to pull in Beenfo.class as 
-    // that needs Screen which isn't present on dedi servers
     public static final Identifier C2SPacketIdentifier = new Identifier(Beenfo.MODID, "c2s");    
     public static final Identifier S2CPacketIdentifierOpen = new Identifier(Beenfo.MODID, "s2c");
     public static final Identifier S2CPacketIdentifierHud = new Identifier(Beenfo.MODID, "s2chud");
 
-    public static void sendBeehiveInfo(PlayerEntity player, int honeyLevel, NbtList bees) {
+    @Override
+    public void onInitialize() {
+        ServerPlayNetworking.registerGlobalReceiver(C2SPacketIdentifier, 
+                (server, player, handler, buf, responseSender) -> {
+                    processClientPacket(server, player, handler, buf, responseSender);
+                });
+    }
+
+    /**
+     * Send the info about a beehive that has been clicked on to the client.
+     * This gets called from BeehiveBlockUseMixin.
+     * @param player
+     * @param honeyLevel
+     * @param bees 
+     */
+    public static void sendBeehiveInfo(ServerPlayerEntity player, int honeyLevel, NbtList bees) {
         PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
         buf.writeInt(honeyLevel);
         if (bees == null) {
@@ -49,24 +64,28 @@ public class BeenfoServer implements ModInitializer {
                 }
             }
         }
-        ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, S2CPacketIdentifierOpen, buf);
-    }
-
-    @Override
-    public void onInitialize() {
-        ServerSidePacketRegistry.INSTANCE.register(C2SPacketIdentifier,
-                (packetContext, attachedData) -> {
-                    processClientPacket(packetContext, attachedData);
-                });
+        ServerPlayNetworking.send(player, S2CPacketIdentifierOpen, buf);
     }
     
-    private void processClientPacket(PacketContext packetContext, PacketByteBuf attachedData) {
+    /**
+     * Process the packet which is sent by the client when looking at a hive.
+     * @param server
+     * @param player
+     * @param handler
+     * @param attachedData
+     * @param responseSender 
+     */
+
+    private void processClientPacket(MinecraftServer server, ServerPlayerEntity player,
+            ServerPlayNetworkHandler handler, PacketByteBuf attachedData, PacketSender responseSender) {
         int packetVersion = attachedData.readInt();
         BlockPos pos = attachedData.readBlockPos();
-        packetContext.getTaskQueue().execute(() -> sendHudContent(packetContext.getPlayer(), pos));
+        server.execute(() -> {
+            sendHudContent(player, pos, responseSender);
+        });
     }
 
-    private void sendHudContent(PlayerEntity player, BlockPos pos) {
+    private void sendHudContent(ServerPlayerEntity player, BlockPos pos, PacketSender responseSender) {
         BlockState state = player.world.getBlockState(pos);
         int honey = state.get(HONEY_LEVEL);
         BlockEntity entity = player.world.getBlockEntity(pos);
@@ -85,6 +104,6 @@ public class BeenfoServer implements ModInitializer {
             buf.writeInt(0);
         }
         buf.writeBlockPos(pos);
-        ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, S2CPacketIdentifierHud, buf);
+        responseSender.sendPacket(S2CPacketIdentifierHud, buf);
     }
 }

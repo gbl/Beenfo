@@ -16,6 +16,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -40,8 +41,8 @@ public class BeehiveBlockUseMixin {
 
         // As we're injecting into the point where super.onUse() gets called,
         // shears and bottles do not reach this point.
-        if (!world.isClient()) {
-            Item item = playerEntity.getStackInHand(hand).getItem();
+        if (playerEntity instanceof ServerPlayerEntity serverplayer) {
+            Item item = serverplayer.getStackInHand(hand).getItem();
             Block block = Block.getBlockFromItem(item);
             // Any item that isn't a block will return Blocks.AIR here
             if (block == Blocks.AIR) {
@@ -53,7 +54,7 @@ public class BeehiveBlockUseMixin {
                     tag = bbe.getBees();
                 }
                 // System.out.println(honey + " honey, "+bees+" bees"+", item="+playerEntity.getStackInHand(hand).getItem());
-                BeenfoServer.sendBeehiveInfo(playerEntity, honey, tag);
+                BeenfoServer.sendBeehiveInfo(serverplayer, honey, tag);
             }
         }
     }

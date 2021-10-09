@@ -8,9 +8,10 @@ import java.util.List;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
-import net.fabricmc.fabric.api.network.PacketContext;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
@@ -34,16 +35,17 @@ public class Beenfo implements ClientModInitializer
         HUD_TEXTURE = new Identifier(Beenfo.MODID, "textures/gui/ingame.png");
         ConfigurationHandler confHandler = ConfigurationHandler.getInstance();
         ConfigurationProvider.register(MODNAME, confHandler);
-        confHandler.load(ConfigurationProvider.getSuggestedFile(MODID));        
-        ClientSidePacketRegistry.INSTANCE.register(BeenfoServer.S2CPacketIdentifierOpen, this::gotHiveInfoOpen);
-        ClientSidePacketRegistry.INSTANCE.register(BeenfoServer.S2CPacketIdentifierHud, this::gotHiveInfoHud);
+        confHandler.load(ConfigurationProvider.getSuggestedFile(MODID));
+        ClientPlayNetworking.registerGlobalReceiver(BeenfoServer.S2CPacketIdentifierOpen, this::gotHiveInfoOpen);
+        ClientPlayNetworking.registerGlobalReceiver(BeenfoServer.S2CPacketIdentifierHud, this::gotHiveInfoHud);
         CrowdinTranslate.downloadTranslations(MODID);
     }
 
     @Environment(EnvType.CLIENT)
-    private void gotHiveInfoOpen(PacketContext context, PacketByteBuf buffer) {
+    private void gotHiveInfoOpen(MinecraftClient client, ClientPlayNetworkHandler handler, 
+            PacketByteBuf buffer, PacketSender responseSender) {
         int honeyLevel, beeCount;
-        ClientPlayerEntity player = MinecraftClient.getInstance().player;
+        ClientPlayerEntity player = client.player;
         List<String> beeNames = new ArrayList<>();
         
         honeyLevel = buffer.readInt();
@@ -52,13 +54,14 @@ public class Beenfo implements ClientModInitializer
             String beeName=buffer.readString();
             beeNames.add(beeName);
         }
-        context.getTaskQueue().execute(() -> {
-            MinecraftClient.getInstance().setScreen(new BeenfoScreen(null, honeyLevel, beeNames));
+        client.execute(() -> {
+            client.setScreen(new BeenfoScreen(null, honeyLevel, beeNames));
         });
     }
     
     @Environment(EnvType.CLIENT)
-    private void gotHiveInfoHud(PacketContext context, PacketByteBuf buffer) {
+    private void gotHiveInfoHud(MinecraftClient client, ClientPlayNetworkHandler handler, 
+            PacketByteBuf buffer, PacketSender responseSender) {
         int packetVersion = buffer.readInt();
         if (packetVersion == 0) {
             lastHiveResponseHoneyLevel = buffer.readInt();
