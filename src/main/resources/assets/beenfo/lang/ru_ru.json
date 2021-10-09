@@ -1,12 +1,12 @@
 {
-    "tooltip.bees": "§6%d Пчёлы",
+    "tooltip.bees": "§6Пчёлы: %d",
     "tooltip.unnamed": "§7- Безымянная пчела",
-    "tooltip.honey": "§6%s Мёд",
+    "tooltip.honey": "§6Мёд: %s",
     "tooltip.name": "§e- %s",
     "beenfo.config.showpopup": "Показывать всплывающее окно у курсора",
-    "beenfo.config.popupxpercent": "Позиция всплывающего окна слева направо",
-    "beenfo.config.popupypercent": "Позиция всплывающего окна сверху вниз",
-    "beenfo.config.tt.showpopup": "Показывать всплывающее окно, когда вы наводитесь на улей или гнезда",
-    "beenfo.config.tt.popupxpercent": "Выберите позицию всплывающего окна на экране",
-    "beenfo.config.tt.popupypercent": "Выберите позицию всплывающего окна на экране"
+    "beenfo.config.popupxpercent": "Позиция окна (слева направо)",
+    "beenfo.config.popupypercent": "Позиция окна (сверху вниз)",
+    "beenfo.config.tt.showpopup": "Показывать всплывающее окно, когда вы смотрите на улей или гнездо",
+    "beenfo.config.tt.popupxpercent": "Укажите позицию всплывающего окна на экране",
+    "beenfo.config.tt.popupypercent": "Укажите позицию всплывающего окна на экране"
 }
