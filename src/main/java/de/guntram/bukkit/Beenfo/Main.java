@@ -1,5 +1,12 @@
 package de.guntram.bukkit.Beenfo;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -8,6 +15,7 @@ import net.minecraft.world.level.block.entity.TileEntityBeehive;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.BlockState;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.type.Beehive;
 import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
 import org.bukkit.entity.Player;
@@ -16,34 +24,33 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.messaging.PluginMessageListener;
 
-public class Main extends JavaPlugin implements Listener {
+public class Main extends JavaPlugin implements Listener, PluginMessageListener {
     
     public static final String MODID = "beenfo";
-    public static final String S2CPacketIdentifier = MODID + ":" +"s2c";
+    public static final String C2SPacketIdentifier = MODID + ":" + "c2s";
+    public static final String S2CPacketIdentifier = MODID + ":" + "s2c";
+    public static final String S2CPacketIdentifierHud = MODID + ":" +"s2chud";
 
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(this, this);
         getServer().getMessenger().registerOutgoingPluginChannel(this, S2CPacketIdentifier);
+        getServer().getMessenger().registerOutgoingPluginChannel(this, S2CPacketIdentifierHud);
+        getServer().getMessenger().registerIncomingPluginChannel(this, C2SPacketIdentifier, this);
     }
     
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         BlockState state;
-/*
-        System.out.println("action "+event.getAction());
-        System.out.println("has block "+event.hasBlock());
-        System.out.println("clicked Block "+event.getClickedBlock());
-        System.out.println("Item "+event.getItem());
-*/
+
         if (
                 event.getAction() == Action.RIGHT_CLICK_BLOCK && 
                 event.hasBlock() &&
                 ((state=event.getClickedBlock().getState()) instanceof org.bukkit.block.Beehive) &&
                 ( event.getItem() == null || event.getItem().getType() == Material.AIR)
         ) {
-//            System.out.println("interact with hive!");
             Player player = event.getPlayer();
             Beehive hiveData = (Beehive) state.getBlockData();
             int honeyLevel = hiveData.getHoneyLevel();
@@ -90,5 +97,35 @@ public class Main extends JavaPlugin implements Listener {
     private void writeInt(byte[] buffer, int pos, int val) {
         buffer[pos] = buffer[pos+1] = buffer[pos+2] = 0;
         buffer[pos+3] = (byte)val;
+    }
+
+    @Override
+    public void onPluginMessageReceived(String string, Player player, byte[] bytes) {
+        try {
+            DataInputStream is = new DataInputStream(new ByteArrayInputStream(bytes));
+            int packetVersion = is.readInt();
+            long blockPosLong = is.readLong();
+            BlockPosition pos = BlockPosition.fromLong(blockPosLong);
+            
+            BlockData blockData = player.getWorld().getBlockAt(pos.getX(), pos.getY(), pos.getZ()).getState().getBlockData();
+            if (!(blockData instanceof Beehive hivedata)) {
+                return;
+            }
+            TileEntityBeehive hive = (TileEntityBeehive) ((CraftWorld)player.getWorld()).getHandle().getTileEntity(pos);
+            
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            DataOutputStream os = new DataOutputStream(baos);
+            os.writeInt(0);
+            os.writeInt(hivedata.getHoneyLevel());
+            os.writeInt(hive.getBeeCount());
+            os.writeLong(blockPosLong);
+            os.close();
+
+            player.sendPluginMessage(this, S2CPacketIdentifierHud, baos.toByteArray());
+            baos.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
