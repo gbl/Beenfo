@@ -1,12 +1,12 @@
 {
-    "tooltip.bees": "§6%d Bees",
-    "tooltip.unnamed": "§7- nameless bee",
-    "tooltip.honey": "§6%s Honey",
+    "tooltip.bees": "§6%d Μέλισσες",
+    "tooltip.unnamed": "§7- ανώνυμη μέλισσα",
+    "tooltip.honey": "§6%s Μέλι",
     "tooltip.name": "§e- %s",
-    "beenfo.config.showpopup": "Show crosshair popup",
-    "beenfo.config.popupxpercent": "Popup position left to right",
-    "beenfo.config.popupypercent": "Popup position top to down",
-    "beenfo.config.tt.showpopup": "Show a popup when you're looking at a hive or nest",
-    "beenfo.config.tt.popupxpercent": "Select the popup position on the screen",
-    "beenfo.config.tt.popupypercent": "Select the popup position on the screen"
+    "beenfo.config.showpopup": "Εμφάνιση αναδυόμενου σταυρονήματος",
+    "beenfo.config.popupxpercent": "Θέση αναδυόμενου παραθύρου από αριστερά προς τα δεξιά",
+    "beenfo.config.popupypercent": "Θέση αναδυόμενου παραθύρου από πάνω προς τα κάτω",
+    "beenfo.config.tt.showpopup": "Εμφάνιση ενός αναδυόμενου παραθύρου όταν βλέπετε μια κυψέλη ή φωλιά",
+    "beenfo.config.tt.popupxpercent": "Επιλέξτε τη θέση του αναδυόμενου παραθύρου στην οθόνη",
+    "beenfo.config.tt.popupypercent": "Επιλέξτε τη θέση του αναδυόμενου παραθύρου στην οθόνη"
 }
