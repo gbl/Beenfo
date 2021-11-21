@@ -1,0 +1,12 @@
+{
+    "tooltip.bees": "§6%d Bienen",
+    "tooltip.unnamed": "§7- namenlose Biene",
+    "tooltip.honey": "§6%s Honig",
+    "tooltip.name": "§e- %s",
+    "beenfo.config.showpopup": "Fadenkreuz-Popup anzeigen",
+    "beenfo.config.popupxpercent": "Popup-Position von links nach rechts",
+    "beenfo.config.popupypercent": "Popup-Position von oben nach unten",
+    "beenfo.config.tt.showpopup": "Popup anzeigen wenn ein Bienenstock oder ein Nest angeschaut wird",
+    "beenfo.config.tt.popupxpercent": "Popup-Position auf dem Bildschirm wählen",
+    "beenfo.config.tt.popupypercent": "Popup-Position auf dem Bildschirm wählen"
+}

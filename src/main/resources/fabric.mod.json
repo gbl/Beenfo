@@ -22,8 +22,7 @@
       "fabric": "*"
     },
     "recommends": {
-        "modmenu" : "*",
-        "modupdater": ">=1.1.7"        
+        "modmenu" : "*"
     },
     "name": "Beenfo",
     "description": "Adds a tooltip to bee nests and hives that shows how much honey, and how many bees, are contained.\n\n.If you like bees, and like this mod, please consider getting more information about them at https://beyondpesticides.org/programs/bee-protective-pollinators-and-pesticides/bee-protective.",
