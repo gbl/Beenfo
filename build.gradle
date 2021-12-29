@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = 'https://maven.minecraftforge.net' }
         jcenter()
         mavenCentral()
         maven {
@@ -27,19 +27,19 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.17.1-forge37.0.13-1.2'
+version = '1.18.1-forge39.0.9-1.2'
 group = 'de.guntram.mcmod.beenfo' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'beenfo'
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(16)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
 minecraft {
-    mappings channel: 'official', version: '1.17.1'
+    mappings channel: 'official', version: '1.18.1'
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.17.1-37.0.13'
+    minecraft 'net.minecraftforge:forge:1.18.1-39.0.9'
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
@@ -67,7 +67,7 @@ task publishModrinth (type: TaskModrinthUpload){
     versionName = project.archivesBaseName
     releaseType = 'release'
     uploadFile = jar // This is the java jar task
-    addGameVersion("1.16.4")
+    addGameVersion("1.18.1")
     addLoader('forge')
 }
 
@@ -76,8 +76,8 @@ curseforge {
     project {
         id = '357256'
         releaseType = 'release'
-        addGameVersion("1.17.1")
-        addGameVersion("Java 16")
+        addGameVersion("1.18.1")
+        addGameVersion("Java 17")
         addGameVersion("Forge")
         mainArtifact(jar)
     }
