@@ -6,7 +6,7 @@
     "beenfo.config.showpopup": "十字線のポップアップを表示する",
     "beenfo.config.popupxpercent": "ポップアップの位置を左から右に",
     "beenfo.config.popupypercent": "ポップアップ位置を上から下に",
-    "beenfo.config.tt.showpopup": "Show a popup when you're looking at a hive or nest",
-    "beenfo.config.tt.popupxpercent": "Select the popup position on the screen",
-    "beenfo.config.tt.popupypercent": "Select the popup position on the screen"
+    "beenfo.config.tt.showpopup": "巣箱や巣を見ているときにポップアップを表示する",
+    "beenfo.config.tt.popupxpercent": "画面上のポップアップ位置を選択します",
+    "beenfo.config.tt.popupypercent": "画面上のポップアップ位置を選択します"
 }

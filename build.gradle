@@ -29,13 +29,14 @@ repositories {
 	maven {
 		url = "https://maven.terraformersmc.com/releases/"
 	}
+        mavenLocal()        // This needs to be filled with Spigot by running java -jar BuildTools.jar --rev 1.18.1 --remapped
 }
 
 sourceCompatibility = 17
 targetCompatibility = 17
 
 ext.Versions = new Properties()
-Versions.load(file("Versionfiles/mcversion-1.18.properties").newReader())
+Versions.load(file("Versionfiles/mcversion-1.18.1.properties").newReader())
 
 archivesBaseName = "beenfo"
 ext.projectVersion = "1.3.3"
@@ -60,8 +61,6 @@ dependencies {
     // aren't in spigots maven, so if you want to compile the mod, you need
     // to get a spigot.jar first. Sorry.
 
-    compileOnly files('/home/gbl/SoftwareProjects/MyProjects/MinecraftPlugins/libraries/spigot-1.17.jar')
-
     minecraft  "com.mojang:minecraft:${Versions['minecraft_version']}"
     mappings   "net.fabricmc:yarn:${Versions['yarn_mappings']}:v2"
     modImplementation "net.fabricmc:fabric-loader:${Versions['loader_version']}"
@@ -71,6 +70,7 @@ dependencies {
     include "de.guntram.mcmod:crowdin-translate:${Versions['crowdintranslate_version']}"
     modImplementation "de.guntram.mcmod:GBfabrictools:${Versions['gbfabrictools_version']}"
     include    "de.guntram.mcmod:GBfabrictools:${Versions['gbfabrictools_version']}"
+    implementation     ("org.spigotmc:spigot:1.18.1-R0.1-SNAPSHOT:remapped-mojang")         // see above, need to compile spigot to have this available
 }
 
 // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
@@ -88,6 +88,20 @@ build {
 jar {
     from "LICENSE"
 }
+
+// WARNING
+// The following must be ran for the spigot part to work.  Unfortunately,
+// my gradle-fu is not strong enough to automate this.
+// For some reason, building spigot did not generate the shaded SpecialSource,
+// so I got it from https://repo.maven.apache.org/maven2/net/md-5/SpecialSource/1.10.0/SpecialSource-1.10.0-shaded.jar.
+// This is explained in https://www.spigotmc.org/threads/spigot-bungeecord-1-17-1-17-1.510208/
+
+
+
+// export PLUGIN=build/libs/beenfo-1.18.1-fabric0.45.0-1.3.3
+// java -cp $HOME/.m2/repository/net/md-5/SpecialSource/1.10.0/SpecialSource-1.10.0-shaded.jar:$HOME/.m2/repository/org/spigotmc/spigot/1.18.1-R0.1-SNAPSHOT/spigot-1.18.1-R0.1-SNAPSHOT-remapped-mojang.jar net.md_5.specialsource.SpecialSource --live -i $PLUGIN.jar -o $PLUGIN-obf.jar -m $HOME/.m2/repository/org/spigotmc/minecraft-server/1.18.1-R0.1-SNAPSHOT/minecraft-server-1.18.1-R0.1-SNAPSHOT-maps-mojang.txt --reverse
+// java -cp $HOME/.m2/repository/net/md-5/SpecialSource/1.10.0/SpecialSource-1.10.0-shaded.jar:$HOME/.m2/repository/org/spigotmc/spigot/1.18.1-R0.1-SNAPSHOT/spigot-1.18.1-R0.1-SNAPSHOT-remapped-obf.jar net.md_5.specialsource.SpecialSource --live -i $PLUGIN-obf.jar -o $PLUGIN.jar -m $HOME/.m2/repository/org/spigotmc/minecraft-server/1.18.1-R0.1-SNAPSHOT/minecraft-server-1.18.1-R0.1-SNAPSHOT-maps-spigot.csrg
+
 
 import com.modrinth.minotaur.TaskModrinthUpload
 

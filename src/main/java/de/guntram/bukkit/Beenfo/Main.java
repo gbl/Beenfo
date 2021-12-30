@@ -7,17 +7,18 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.minecraft.core.BlockPosition;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.world.level.block.entity.TileEntity;
-import net.minecraft.world.level.block.entity.TileEntityBeehive;
+import net.minecraft.world.level.block.entity.BeehiveBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.type.Beehive;
-import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_18_R1.CraftWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -56,19 +57,16 @@ public class Main extends JavaPlugin implements Listener, PluginMessageListener 
             int honeyLevel = hiveData.getHoneyLevel();
             CraftWorld world = (CraftWorld)player.getWorld();
             Location l = event.getClickedBlock().getLocation();
-            BlockPosition pos = new BlockPosition(l.getBlockX(), l.getBlockY(), l.getBlockZ());
+            BlockPos pos = new BlockPos(l.getBlockX(), l.getBlockY(), l.getBlockZ());
             
-            TileEntity te = world.getHandle().getTileEntity(pos);
-            if (te instanceof TileEntityBeehive) {
-                TileEntityBeehive hive = (TileEntityBeehive) te;
-                NBTTagCompound compound = new NBTTagCompound();
-                hive.save(compound);
-                NBTTagList bees = compound.getList("Bees", 10);
+            BlockEntity te = world.getHandle().getBlockEntity(pos, true);
+            if (te instanceof BeehiveBlockEntity hive) {
+                ListTag bees = hive.writeBees(); // writeBees()
                 int neededSize = 8;
                 for (int i=0; i<bees.size(); i++) {
-                    NBTTagCompound beeData = bees.getCompound(i).getCompound("EntityData");
-                    if (beeData != null && beeData.hasKeyOfType("CustomName", 8)) {
-                        String beeName = beeData.getString("CustomName");
+                    CompoundTag beeData = bees.getCompound(i).getCompound("EntityData"); // a, p  = getCompound
+                    if (beeData != null && beeData.contains("CustomName", 8)) {    // b = contains
+                        String beeName = beeData.getString("CustomName");           // l = getString
                         neededSize += beeName.length() + 1;
                     } else {
                         neededSize++;
@@ -79,11 +77,12 @@ public class Main extends JavaPlugin implements Listener, PluginMessageListener 
                 writeInt(sendBuffer, 4, bees.size());
                 int bufPos=8;
                 for (int i=0; i<bees.size(); i++) {
-                    NBTTagCompound beeData = bees.getCompound(i).getCompound("EntityData");
-                    if (beeData != null && beeData.hasKeyOfType("CustomName", 8)) {
-                        String beeName = beeData.getString("CustomName");
+                    CompoundTag beeData = bees.getCompound(i).getCompound("EntityData"); // a, p  = getCompound
+                    if (beeData != null && beeData.contains("CustomName", 8)) {    // b = contains
+                        String beeName = beeData.getString("CustomName");           // l = getString
                         sendBuffer[bufPos++] = (byte) beeName.length();
                         System.arraycopy(beeName.getBytes(), 0, sendBuffer, bufPos, beeName.length());
+                        bufPos += beeName.length();
                     } else {
                         sendBuffer[bufPos++] = 0;
                     }
@@ -105,19 +104,18 @@ public class Main extends JavaPlugin implements Listener, PluginMessageListener 
             DataInputStream is = new DataInputStream(new ByteArrayInputStream(bytes));
             int packetVersion = is.readInt();
             long blockPosLong = is.readLong();
-            BlockPosition pos = BlockPosition.fromLong(blockPosLong);
-            
+            BlockPos pos = BlockPos.of(blockPosLong);      // d == of == fromLong
             BlockData blockData = player.getWorld().getBlockAt(pos.getX(), pos.getY(), pos.getZ()).getState().getBlockData();
             if (!(blockData instanceof Beehive hivedata)) {
                 return;
             }
-            TileEntityBeehive hive = (TileEntityBeehive) ((CraftWorld)player.getWorld()).getHandle().getTileEntity(pos);
+            BeehiveBlockEntity hive = (BeehiveBlockEntity) ((CraftWorld)player.getWorld()).getHandle().getBlockEntity(pos);
             
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             DataOutputStream os = new DataOutputStream(baos);
             os.writeInt(0);
             os.writeInt(hivedata.getHoneyLevel());
-            os.writeInt(hive.getBeeCount());
+            os.writeInt(hive.getOccupantCount());                  // getOccupantCount
             os.writeLong(blockPosLong);
             os.close();
 

@@ -1,12 +1,12 @@
 {
-    "tooltip.bees": "§6%d Bees",
-    "tooltip.unnamed": "§7- nameless bee",
-    "tooltip.honey": "§6%s Honey",
+    "tooltip.bees": "§6%d Albine",
+    "tooltip.unnamed": "§7- albină fără nume",
+    "tooltip.honey": "§6%s Miere",
     "tooltip.name": "§e- %s",
-    "beenfo.config.showpopup": "Show crosshair popup",
-    "beenfo.config.popupxpercent": "Popup position left to right",
-    "beenfo.config.popupypercent": "Popup position top to down",
-    "beenfo.config.tt.showpopup": "Show a popup when you're looking at a hive or nest",
-    "beenfo.config.tt.popupxpercent": "Select the popup position on the screen",
-    "beenfo.config.tt.popupypercent": "Select the popup position on the screen"
+    "beenfo.config.showpopup": "Afișează pop-up pentru cruce",
+    "beenfo.config.popupxpercent": "Poziție pop-up de la stânga la dreapta",
+    "beenfo.config.popupypercent": "Poziție popup de sus în jos",
+    "beenfo.config.tt.showpopup": "Arată un pop-up când te uiți la un stup sau un cuib",
+    "beenfo.config.tt.popupxpercent": "Selectează poziția pop-up pe ecran",
+    "beenfo.config.tt.popupypercent": "Selectează poziția pop-up pe ecran"
 }
