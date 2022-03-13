@@ -1,12 +1,12 @@
 {
-    "tooltip.bees": "§6%d Bees",
-    "tooltip.unnamed": "§7- nameless bee",
-    "tooltip.honey": "§6%s Honey",
+    "tooltip.bees": "§6%d бджіл",
+    "tooltip.unnamed": "§7- безіменна бджола",
+    "tooltip.honey": "§6%s меду",
     "tooltip.name": "§e- %s",
-    "beenfo.config.showpopup": "Show crosshair popup",
-    "beenfo.config.popupxpercent": "Popup position left to right",
-    "beenfo.config.popupypercent": "Popup position top to down",
-    "beenfo.config.tt.showpopup": "Show a popup when you're looking at a hive or nest",
-    "beenfo.config.tt.popupxpercent": "Select the popup position on the screen",
-    "beenfo.config.tt.popupypercent": "Select the popup position on the screen"
+    "beenfo.config.showpopup": "Показувати спливаюче вікно прицілювання",
+    "beenfo.config.popupxpercent": "Спливаюче вікно зліва направо",
+    "beenfo.config.popupypercent": "Спливаюче вікно зверху до низу",
+    "beenfo.config.tt.showpopup": "Показувати спливаюче вікно, коли ви дивитеся на вулик або на гніздо",
+    "beenfo.config.tt.popupxpercent": "Виберіть розташування спливаючих вікон на екрані",
+    "beenfo.config.tt.popupypercent": "Виберіть розташування спливаючих вікон на екрані"
 }

@@ -88,7 +88,7 @@ public class BeenfoScreen extends Screen {
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
         if (super.keyPressed(keyCode, scanCode, modifiers)) {
            return true;
-        } else if (keyCode == GLFW.GLFW_KEY_ESCAPE || this.client.options.keyInventory.matchesKey(keyCode, scanCode)) {
+        } else if (keyCode == GLFW.GLFW_KEY_ESCAPE || this.client.options.inventoryKey.matchesKey(keyCode, scanCode)) {
               this.client.player.closeScreen();
               return true;
         }

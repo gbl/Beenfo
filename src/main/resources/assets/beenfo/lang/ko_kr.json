@@ -1,12 +1,12 @@
 {
     "tooltip.bees": "§6%d 벌들",
-    "tooltip.unnamed": "§7-",
+    "tooltip.unnamed": "§7- 이름 없는 벌",
     "tooltip.honey": "§6%s 꿀",
     "tooltip.name": "§e- %s",
-    "beenfo.config.showpopup": "Show crosshair popup",
-    "beenfo.config.popupxpercent": "Popup position left to right",
-    "beenfo.config.popupypercent": "Popup position top to down",
-    "beenfo.config.tt.showpopup": "Show a popup when you're looking at a hive or nest",
-    "beenfo.config.tt.popupxpercent": "Select the popup position on the screen",
-    "beenfo.config.tt.popupypercent": "Select the popup position on the screen"
+    "beenfo.config.showpopup": "십자선 팝업 표시하기",
+    "beenfo.config.popupxpercent": "팝업의 위치를 왼쪽에서 오른쪽으로 옮기기",
+    "beenfo.config.popupypercent": "팝업의 위치를 위쪽에서 아래쪽으로 옮기기",
+    "beenfo.config.tt.showpopup": "벌통이나 벌집을 보고 있을 때 팝업을 표시하기",
+    "beenfo.config.tt.popupxpercent": "화면에 표시할 팝업 위치 선택하기",
+    "beenfo.config.tt.popupypercent": "화면에 표시할 팝업 위치 선택하기"
 }
