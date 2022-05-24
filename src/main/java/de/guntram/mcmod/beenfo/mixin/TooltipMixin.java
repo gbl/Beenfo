@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -57,14 +56,14 @@ public abstract class TooltipMixin {
                         if (tag != null && tag.contains("CustomName", 8))
                         {
                             String beeName = tag.getString("CustomName");
-                            list.add(Math.min(1, list.size()), new LiteralText(I18n.translate("tooltip.name", Text.Serializer.fromJson(beeName).getString())));
+                            list.add(Math.min(1, list.size()), Text.literal(I18n.translate("tooltip.name", Text.Serializer.fromJson(beeName).getString())));
                         }
                     }
 
                     // TranslatableText instead of LiteralText(I18n...... has the
                     // problem of not honoring style modifiers.
-                    list.add(Math.min(1, list.size()), new LiteralText(I18n.translate("tooltip.bees", beeCount)));
-                    list.add(Math.min(1, list.size()), new LiteralText(I18n.translate("tooltip.honey", honeyLevel)));
+                    list.add(Math.min(1, list.size()), Text.literal(I18n.translate("tooltip.bees", beeCount)));
+                    list.add(Math.min(1, list.size()), Text.literal(I18n.translate("tooltip.honey", honeyLevel)));
                 }
             }
         } catch (NullPointerException ex) {

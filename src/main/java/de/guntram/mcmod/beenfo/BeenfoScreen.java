@@ -8,7 +8,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
@@ -22,7 +21,7 @@ public class BeenfoScreen extends Screen {
     private ItemStack honeyBottle;
     
     BeenfoScreen(Object object, int honeyLevel, List<String> beeNames) {
-        super(new TranslatableText("beenfo.screen.title"));
+        super(Text.translatable("beenfo.screen.title"));
         this.honeyLevel = honeyLevel;
         this.beeNames = new ArrayList<>(beeNames.size());
         for (String beeName: beeNames) {
