@@ -5,7 +5,6 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -50,12 +49,12 @@ public class TooltipMixin {
                     if (tag != null && tag.contains("CustomName", 8))
                     {
                         String beeName = tag.getString("CustomName");
-                        list.add(Math.min(1, list.size()), new TextComponent(I18n.get("tooltip.name", Component.Serializer.fromJson(beeName).getString())));
+                        list.add(Math.min(1, list.size()), Component.literal(I18n.get("tooltip.name", Component.Serializer.fromJson(beeName).getString())));
                     }
                 }
 
-                list.add(Math.min(1, list.size()), new TextComponent(I18n.get("tooltip.bees", beeCount)));
-                list.add(Math.min(1, list.size()), new TextComponent(I18n.get("tooltip.honey", honeyLevel)));
+                list.add(Math.min(1, list.size()), Component.literal(I18n.get("tooltip.bees", beeCount)));
+                list.add(Math.min(1, list.size()), Component.literal(I18n.get("tooltip.honey", honeyLevel)));
             }
         } catch (NullPointerException ex) {
             System.out.println("NPE in getTooltipdone");
