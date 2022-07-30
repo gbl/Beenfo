@@ -33,9 +33,9 @@ public class BeehiveBlockUseMixin {
     @SubscribeEvent
     public void onUseStick(PlayerInteractEvent.RightClickBlock event) {
 
-        Level world = event.getWorld();
+        Level world = event.getLevel();
         BlockPos blockPos = event.getPos();
-        Player playerEntity = event.getPlayer();
+        Player playerEntity = event.getEntity();
         InteractionHand hand = event.getHand();
         BlockState blockState = world.getBlockState(blockPos);
         
