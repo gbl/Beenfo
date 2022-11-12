@@ -1,7 +1,7 @@
 {
-    "tooltip.bees": "§6%d Včely",
+    "tooltip.bees": "§6%d Včel",
     "tooltip.unnamed": "§7- bezejmenná včela",
-    "tooltip.honey": "§6%s Med",
+    "tooltip.honey": "§6%s Medu",
     "tooltip.name": "§e- %s",
     "beenfo.config.showpopup": "Zobrazit vyskakovací okno při namíření na úl nebo hnízdo",
     "beenfo.config.popupxpercent": "Vyskakovací pozice zleva doprava",

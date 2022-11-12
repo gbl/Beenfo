@@ -11,8 +11,8 @@ buildscript {
 }
 
 plugins {
-	id 'fabric-loom' version '0.11-SNAPSHOT'
-	id "com.modrinth.minotaur" version "1.1.0"
+	id 'fabric-loom' version '0.12-+'
+	id "com.modrinth.minotaur" version "2.+"
 	id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 
@@ -36,7 +36,7 @@ sourceCompatibility = 17
 targetCompatibility = 17
 
 ext.Versions = new Properties()
-Versions.load(file("Versionfiles/mcversion-1.19.properties").newReader())
+Versions.load(file("Versionfiles/mcversion-22w45a.properties").newReader())
 
 archivesBaseName = "beenfo"
 ext.projectVersion = "1.3.3"
@@ -70,7 +70,7 @@ dependencies {
     include "de.guntram.mcmod:crowdin-translate:${Versions['crowdintranslate_version']}"
     modImplementation "de.guntram.mcmod:GBfabrictools:${Versions['gbfabrictools_version']}"
     include    "de.guntram.mcmod:GBfabrictools:${Versions['gbfabrictools_version']}"
-    implementation     ("org.spigotmc:spigot:1.19-R0.1-SNAPSHOT:remapped-mojang")         // see above, need to compile spigot to have this available
+    implementation     ("org.spigotmc:spigot:1.19.1-R0.1-SNAPSHOT:remapped-mojang")         // see above, need to compile spigot to have this available
 }
 
 // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
@@ -98,24 +98,18 @@ jar {
 
 
 
-// export VERSION=1.19
-// export PLUGIN=build/libs/beenfo-$VERSION-fabric0.53.3-1.3.3
+// export VERSION=1.19.1
+// export PLUGIN=build/libs/beenfo-$VERSION-fabric0.58.5-1.3.3
 // java17 -cp $HOME/.m2/repository/net/md-5/SpecialSource/1.10.0/SpecialSource-1.10.0-shaded.jar:$HOME/.m2/repository/org/spigotmc/spigot/$VERSION-R0.1-SNAPSHOT/spigot-$VERSION-R0.1-SNAPSHOT-remapped-mojang.jar net.md_5.specialsource.SpecialSource --live -i $PLUGIN.jar -o $PLUGIN-obf.jar -m $HOME/.m2/repository/org/spigotmc/minecraft-server/$VERSION-R0.1-SNAPSHOT/minecraft-server-$VERSION-R0.1-SNAPSHOT-maps-mojang.txt --reverse
 // java17 -cp $HOME/.m2/repository/net/md-5/SpecialSource/1.10.0/SpecialSource-1.10.0-shaded.jar:$HOME/.m2/repository/org/spigotmc/spigot/$VERSION-R0.1-SNAPSHOT/spigot-$VERSION-R0.1-SNAPSHOT-remapped-obf.jar net.md_5.specialsource.SpecialSource --live -i $PLUGIN-obf.jar -o $PLUGIN-spigot.jar -m $HOME/.m2/repository/org/spigotmc/minecraft-server/$VERSION-R0.1-SNAPSHOT/minecraft-server-$VERSION-R0.1-SNAPSHOT-maps-spigot.csrg
 
 
 import com.modrinth.minotaur.TaskModrinthUpload
 
-task publishModrinth (type: TaskModrinthUpload){
-
-    token = System.getenv("MODRINTH_TOKEN")
-    projectId = 'Bta0Pt47'
-    versionNumber = project.version
+modrinth {
+    projectId = 'beenfo'
     versionName = project.archivesBaseName
-    releaseType = 'release'
     uploadFile = remapJar // This is the java jar task
-    addGameVersion("${Versions['minecraft_version']}")
-    addLoader('fabric')
 }
 
 curseforge {
